@@ -6988,6 +6988,11 @@ bool item::is_irremovable() const
     return has_flag( flag_IRREMOVABLE );
 }
 
+bool item::is_broken() const
+{
+    return has_flag( flag_ITEM_BROKEN );
+}
+
 std::set<fault_id> item::faults_potential() const
 {
     std::set<fault_id> res;

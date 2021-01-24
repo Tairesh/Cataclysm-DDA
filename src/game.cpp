@@ -246,6 +246,8 @@ static const itype_id itype_remotevehcontrol( "remotevehcontrol" );
 static const itype_id itype_rm13_armor_on( "rm13_armor_on" );
 static const itype_id itype_rope_30( "rope_30" );
 static const itype_id itype_swim_fins( "swim_fins" );
+static const itype_id itype_towel( "towel" );
+static const itype_id itype_towel_wet( "towel_wet" );
 
 static const trait_id trait_BADKNEES( "BADKNEES" );
 static const trait_id trait_ILLITERATE( "ILLITERATE" );
@@ -10618,6 +10620,41 @@ void game::on_options_changed()
 #if defined(TILES)
     tilecontext->on_options_changed();
 #endif
+}
+
+void game::water_affect_items( Character &ch ) const
+{
+    std::vector<item_location> dissolved;
+    std::vector<item_location> destroyed;
+
+    for( item_location &loc : ch.all_items_loc() ) {
+        // check flag first because its cheaper
+        if( loc->has_flag( flag_WATER_DISSOLVE ) && !loc.protected_from_liquids() ) {
+            dissolved.emplace_back( loc );
+        } else if( loc->has_flag( flag_WATER_BREAK ) && !loc->is_broken()
+                   && !loc.protected_from_liquids() ) {
+            destroyed.emplace_back( loc );
+        } else if( loc->typeId() == itype_towel && !loc.protected_from_liquids() ) {
+            loc->convert( itype_towel_wet );
+        }
+    }
+
+    if( dissolved.empty() && destroyed.empty() ) {
+        return;
+    }
+
+    for( item_location &it : dissolved ) {
+        add_msg_if_player_sees( ch.pos(), m_bad, _( "%1$s %2$s dissolved in the water!" ),
+                                ch.disp_name( true, true ), it->display_name() );
+        it.remove_item();
+    }
+
+    for( item_location &it : destroyed ) {
+        add_msg_if_player_sees( ch.pos(), m_bad, _( "The water destroyed %1$s %2$s!" ),
+                                ch.disp_name( true ), it->display_name() );
+        it->deactivate();
+        it->set_flag( flag_ITEM_BROKEN );
+    }
 }
 
 void game::fling_creature( Creature *c, const units::angle &dir, float flvel, bool controlled )
