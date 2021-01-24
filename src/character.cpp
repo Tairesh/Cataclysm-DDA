@@ -8700,7 +8700,7 @@ bool Character::invoke_item( item *used, const std::string &method )
 bool Character::invoke_item( item *used, const std::string &method, const tripoint &pt )
 {
     if( used->is_broken() ) {
-        add_msg_if_player( m_bad, _( "This item was broken and won't turn on." ) );
+        add_msg_if_player( m_bad, _( "Your %s was broken and won't turn on." ), used->tname() );
         return false;
     }
     if( !has_enough_charges( *used, true ) ) {

@@ -915,7 +915,7 @@ class activatable_inventory_preset : public pickup_inventory_preset
             }
 
             if( it.is_broken() ) {
-                return _( "This item was broken and won't turn on." );
+                return string_format( _( "Your %s was broken and won't turn on." ), it.tname() );
             }
 
             if( !p.has_enough_charges( it, false ) ) {
