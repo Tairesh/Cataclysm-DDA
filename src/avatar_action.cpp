@@ -101,7 +101,7 @@ static bool check_water_affect_items( avatar &you )
     }
 
     if( dissolved.empty() && destroyed.empty() ) {
-        return true;
+        return query_yn( _( "Dive into the water?" ) );
     }
 
     uilist menu;
@@ -417,7 +417,7 @@ bool avatar_action::move( avatar &you, map &m, const tripoint &d )
             }
         }
         if( ( fromSwimmable && fromDeepWater && !fromBoat ) ||
-            ( query_yn( _( "Dive into the water?" ) ) && check_water_affect_items( you ) ) ) {
+            check_water_affect_items( you ) ) {
             if( ( !fromDeepWater || fromBoat ) && you.swim_speed() < 500 ) {
                 add_msg( _( "You start swimming." ) );
                 add_msg( m_info, _( "%s to dive underwater." ),
