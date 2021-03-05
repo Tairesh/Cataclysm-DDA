@@ -381,7 +381,6 @@
       { "item": "manual_sealing", "prob": 9 },
       { "item": "fermenting_book", "prob": 8 },
       { "item": "distilling_cookbook", "prob": 8 }
-
     ]
   },
   {
