@@ -1351,7 +1351,7 @@
       { "proficiency": "prof_gunsmithing_improv" },
       { "proficiency": "prof_plasticworking", "time_multiplier": 1.25, "learning_time_multiplier": 0.1 }
     ],
-    "tools": [ [ "laptop", -1 ] ] ],
+    "tools": [ [ "laptop", -1 ] ],
     "components": [
       [ [ "plastic_chunk", 10 ] ],
       [ [ "superglue", 1 ] ],
