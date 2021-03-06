@@ -671,7 +671,7 @@
       { "proficiency": "prof_carpentry_basic" }
     ],
     "components": [
-      [ [ "plank", 4 ] ],
+      [ [ "2x4", 4 ] ],
       [ [ "plastic_chunk", 2 ] ],
       [ [ "clamp", 2 ] ],
       [ [ "vac_pump", 1 ] ],
