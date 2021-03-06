@@ -631,7 +631,7 @@
     "id": "mold_plastic",
     "type": "TOOL",
     "name": { "str": "plastic mold" },
-    "description": "This is a plastic mold.  It could be shaped and used to craft items made of plastic.",
+    "description": "This is a plastic mold.  It can be used to form plastic chunks.",
     "weight": "320 g",
     "volume": "2500 ml",
     "price": 1000,
