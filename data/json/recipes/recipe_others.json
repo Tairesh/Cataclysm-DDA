@@ -1575,7 +1575,7 @@
     "autolearn": true,
     "book_learn": [ [ "plastics_book", 2 ] ],
     "proficiencies": [ { "proficiency": "prof_plasticworking" } ],
-    "tools": [ [ "surface_heat", 5, "LIST" ] ],
+    "tools": [ [ [ "surface_heat", 5, "LIST" ] ] ],
     "using": [ [ "plastic_molding", 1 ] ],
     "components": [ [ [ "plastic_chunk", 3 ] ] ]
   },
