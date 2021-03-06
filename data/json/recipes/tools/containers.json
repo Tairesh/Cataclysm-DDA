@@ -185,7 +185,7 @@
     "autolearn": true,
     "book_learn": [ [ "plastics_book", 2 ] ],
     "proficiencies": [ { "proficiency": "prof_plasticworking" } ],
-    "tools": [ [ "surface_heat", 5, "LIST" ] ],
+    "tools": [ [ [ "surface_heat", 5, "LIST" ] ] ],
     "using": [ [ "plastic_molding", 1 ] ],
     "components": [ [ [ "plastic_chunk", 2 ] ] ]
   },
@@ -201,7 +201,7 @@
     "autolearn": true,
     "book_learn": [ [ "plastics_book", 2 ] ],
     "proficiencies": [ { "proficiency": "prof_plasticworking" } ],
-    "tools": [ [ "surface_heat", 3, "LIST" ] ],
+    "tools": [ [ [ "surface_heat", 3, "LIST" ] ] ],
     "using": [ [ "plastic_molding", 1 ] ],
     "components": [ [ [ "plastic_chunk", 1 ] ] ]
   },
@@ -217,7 +217,7 @@
     "autolearn": true,
     "book_learn": [ [ "plastics_book", 2 ] ],
     "proficiencies": [ { "proficiency": "prof_plasticworking" } ],
-    "tools": [ [ "surface_heat", 10, "LIST" ] ],
+    "tools": [ [ [ "surface_heat", 10, "LIST" ] ] ],
     "using": [ [ "plastic_molding", 1 ] ],
     "components": [ [ [ "plastic_chunk", 8 ] ] ]
   },
@@ -515,7 +515,7 @@
     "autolearn": true,
     "book_learn": [ [ "plastics_book", 2 ] ],
     "proficiencies": [ { "proficiency": "prof_plasticworking" } ],
-    "tools": [ [ "surface_heat", 15, "LIST" ] ],
+    "tools": [ [ [ "surface_heat", 15, "LIST" ] ] ],
     "using": [ [ "plastic_molding", 1 ] ],
     "components": [ [ [ "plastic_chunk", 15 ] ] ]
   },
@@ -577,7 +577,7 @@
     "using": [ [ "sewing_standard", 4 ] ],
     "book_learn": [ [ "plastics_book", 3 ] ],
     "proficiencies": [ { "proficiency": "prof_plasticworking" } ],
-    "tools": [ [ "surface_heat", 10, "LIST" ] ],
+    "tools": [ [ [ "surface_heat", 10, "LIST" ] ] ],
     "using": [ [ "plastic_molding", 2 ] ],
     "components": [ [ [ "plastic_chunk", 6 ] ], [ [ "rag", 3 ], [ "leather", 3 ], [ "fur", 3 ] ] ]
   },
@@ -594,7 +594,7 @@
     "using": [ [ "sewing_standard", 4 ] ],
     "book_learn": [ [ "plastics_book", 3 ] ],
     "proficiencies": [ { "proficiency": "prof_plasticworking" } ],
-    "tools": [ [ "surface_heat", 15, "LIST" ] ],
+    "tools": [ [ [ "surface_heat", 15, "LIST" ] ] ],
     "using": [ [ "plastic_molding", 2 ] ],
     "components": [ [ [ "plastic_chunk", 10 ] ], [ [ "rag", 3 ], [ "leather", 3 ], [ "fur", 3 ] ] ]
   },
