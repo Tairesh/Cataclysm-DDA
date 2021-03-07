@@ -317,7 +317,7 @@
     "time": "1 h",
     "book_learn": [ [ "recipe_melee", 4 ] ],
     "proficiencies": [ { "proficiency": "prof_plasticworking", "fail_multiplier": 5 } ],
-    "tools": [ [ "surface_heat", 10, "LIST" ] ],
+    "tools": [ [ [ "surface_heat", 10, "LIST" ] ] ],
     "using": [ [ "plastic_molding", 1 ] ],
     "components": [ [ [ "plastic_chunk", 10 ] ] ]
   },
