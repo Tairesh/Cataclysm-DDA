@@ -340,7 +340,7 @@ furn_t null_furniture_t()
     new_furniture.move_str_req = -1;
     new_furniture.transparent = true;
     new_furniture.set_flag( flag_TRANSPARENT );
-    new_furniture.examine_func = iexamine_function_from_string( "none" );
+    new_furniture.examine_func = iexamine_functions_from_string( "none" );
     new_furniture.max_volume = DEFAULT_MAX_VOLUME_IN_SQUARE;
     return new_furniture;
 }
@@ -362,7 +362,7 @@ ter_t null_terrain_t()
     new_terrain.transparent = true;
     new_terrain.set_flag( flag_TRANSPARENT );
     new_terrain.set_flag( flag_DIGGABLE );
-    new_terrain.examine_func = iexamine_function_from_string( "none" );
+    new_terrain.examine_func = iexamine_functions_from_string( "none" );
     new_terrain.max_volume = DEFAULT_MAX_VOLUME_IN_SQUARE;
     return new_terrain;
 }
@@ -399,22 +399,22 @@ std::string map_data_common_t::name() const
 
 bool map_data_common_t::can_examine() const
 {
-    return !has_examine( iexamine::none );
+    return examine_func.can_examine();
 }
 
-bool map_data_common_t::has_examine( iexamine_function_ref func ) const
+bool map_data_common_t::has_examine( iexamine_examine_function func ) const
 {
-    return examine_func == &func;
+    return examine_func.examine == func;
 }
 
-void map_data_common_t::set_examine( iexamine_function_ref func )
+void map_data_common_t::set_examine( iexamine_functions func )
 {
-    examine_func = &func;
+    examine_func = func;
 }
 
 void map_data_common_t::examine( player &guy, const tripoint &examp ) const
 {
-    examine_func( guy, examp );
+    examine_func.examine( guy, examp );
 }
 
 void map_data_common_t::load_symbol( const JsonObject &jo )
@@ -1165,9 +1165,9 @@ std::string enum_to_string<season_type>( season_type data )
 void map_data_common_t::load( const JsonObject &jo, const std::string & )
 {
     if( jo.has_member( "examine_action" ) ) {
-        examine_func = iexamine_function_from_string( jo.get_string( "examine_action" ) );
+        examine_func = iexamine_functions_from_string( jo.get_string( "examine_action" ) );
     } else {
-        examine_func = iexamine_function_from_string( "none" );
+        examine_func = iexamine_functions_from_string( "none" );
     }
 
     if( jo.has_array( "harvest_by_season" ) ) {
