@@ -246,10 +246,9 @@
         "learning_time_multiplier": 0.1
       }
     ],
-    "using": [ [ "forging_standard", 4 ] ],
+    "using": [ [ "forging_standard", 4 ], [ "plastic_molding", 1 ] ],
     "qualities": [ { "id": "ANVIL", "level": 3 }, { "id": "HAMMER", "level": 3 }, { "id": "CHISEL", "level": 3 } ],
     "tools": [ [ [ "tongs", -1 ] ], [ [ "swage", -1 ] ] ],
-    "using": [ [ "plastic_molding", 1 ] ],
     "components": [ [ [ "plastic_chunk", 2 ] ], [ [ "steel_lump", 2 ] ] ]
   },
   {
