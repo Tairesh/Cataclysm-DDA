@@ -1592,7 +1592,7 @@ const harvest_id &map::get_harvest( const tripoint &pos ) const
     const auto furn_here = furn( pos );
     if( !furn_here->has_flag( TFLAG_HARVESTED ) ) {
         const harvest_id &harvest = furn_here->get_harvest();
-        if( harvest.is_null() ) {
+        if( ! harvest.is_null() ) {
             return harvest;
         }
     }

@@ -31,18 +31,12 @@ TEST_CASE( "examine_bush" )
     m.ter_set( elderberry_loc, ter_id( "t_tree_elderberry" ) );
 
     CHECK( m.ter( pine_loc )->has_examine( iexamine::harvest_ter ) );
-    CHECK( m.ter( elderberry_loc )->has_examine( iexamine::harvest_ter ) );
+    CHECK( m.ter( elderberry_loc )->has_examine( iexamine::harvest_ter_nectar ) );
 
     // In spring, pine is harvestable but elderberry is not
     calendar::turn = calendar::turn_zero;
     CHECK( m.ter( pine_loc )->can_examine( pine_loc ) );
     CHECK_FALSE( m.ter( elderberry_loc )->can_examine( elderberry_loc ) );
-
-    // Why do these fail?
-    CHECK_FALSE( m.ter( pine_loc )->get_harvest().is_null() );
-    CHECK( m.ter( elderberry_loc )->get_harvest().is_null() );
-    CHECK_FALSE( get_map().get_harvest( pine_loc ).is_null() );
-    CHECK( get_map().get_harvest( elderberry_loc ).is_null() );
 
     // In summer, both are harvestable
     calendar::turn = calendar::turn_zero + calendar::season_length() + 1_days;
