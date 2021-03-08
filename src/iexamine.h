@@ -27,8 +27,9 @@ void egg_sack_generic( player &p, const tripoint &examp, const mtype_id &montype
 
 void none( player &p, const tripoint &examp );
 
-bool always_false( );
-bool always_true( );
+bool always_false( const tripoint &examp );
+bool always_true( const tripoint &examp );
+bool harvestable_now( const tripoint &examp );
 
 void gaspump( player &p, const tripoint &examp );
 void atm( player &p, const tripoint &examp );
@@ -142,7 +143,7 @@ void practice_survival_while_foraging( player *p );
 } //namespace iexamine
 
 using iexamine_examine_function = void ( * )( player &, const tripoint & );
-using iexamine_can_examine_function = bool ( * )( );
+using iexamine_can_examine_function = bool ( * )( const tripoint & );
 struct iexamine_functions {
     iexamine_can_examine_function can_examine;
     iexamine_examine_function examine;

@@ -397,9 +397,9 @@ std::string map_data_common_t::name() const
     return name_.translated();
 }
 
-bool map_data_common_t::can_examine() const
+bool map_data_common_t::can_examine( const tripoint &examp ) const
 {
-    return examine_func.can_examine();
+    return examine_func.can_examine( examp );
 }
 
 bool map_data_common_t::has_examine( iexamine_examine_function func ) const
@@ -1354,15 +1354,6 @@ void furn_t::load( const JsonObject &jo, const std::string &src )
     }
     if( jo.has_float( "surgery_skill_multiplier" ) ) {
         surgery_skill_multiplier = cata::make_value<float>( jo.get_float( "surgery_skill_multiplier" ) );
-    }
-}
-
-void map_data_common_t::check() const
-{
-    for( const string_id<harvest_list> &harvest : harvest_by_season ) {
-        if( !harvest.is_null() && !can_examine() ) {
-            debugmsg( "Harvest data defined without examine function for %s", name_ );
-        }
     }
 }
 

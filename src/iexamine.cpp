@@ -234,15 +234,21 @@ void iexamine::none( player &/*p*/, const tripoint &examp )
     add_msg( _( "That is a %s." ), get_map().name( examp ) );
 }
 
-bool iexamine::always_false( )
+bool iexamine::always_false( const tripoint &/*examp*/ )
 {
     return false;
 }
 
 
-bool iexamine::always_true( )
+bool iexamine::always_true( const tripoint &/*examp*/ )
 {
     return true;
+}
+
+bool iexamine::harvestable_now( const tripoint &examp )
+{
+    const auto hid = get_map().get_harvest( examp );
+    return !hid->is_null() && !hid->empty();
 }
 
 
@@ -6402,11 +6408,21 @@ iexamine_functions iexamine_functions_from_string( const std::string &function_n
         }
     };
 
+    static const std::set<std::string> harvestable_functions = {
+        "harvest_furn_nectar",
+        "harvest_furn",
+        "harvest_ter_nectar",
+        "harvest_ter",
+        "tree_hickory",
+    };
+
     auto iter = function_map.find( function_name );
     if( iter != function_map.end() ) {
         iexamine_examine_function func = iter->second;
         if( function_name == "none" ) {
             return iexamine_functions{&iexamine::always_false, func};
+        } else if( harvestable_functions.find( function_name ) != harvestable_functions.end() ) {
+            return iexamine_functions{&iexamine::harvestable_now, func};
         } else {
             return iexamine_functions{&iexamine::always_true, func};
         }

@@ -273,7 +273,7 @@ struct map_data_common_t {
         */
         std::array<int, NUM_SEASONS> symbol_;
 
-        bool can_examine() const;
+        bool can_examine( const tripoint &examp ) const;
         bool has_examine( iexamine_examine_function func ) const;
         void set_examine( iexamine_functions func );
         void examine( player &, const tripoint & ) const;
@@ -350,7 +350,7 @@ struct map_data_common_t {
         }
 
         virtual void load( const JsonObject &jo, const std::string & );
-        virtual void check() const;
+        virtual void check() const {};
 };
 
 /*
