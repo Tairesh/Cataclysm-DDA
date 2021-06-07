@@ -1072,11 +1072,11 @@ void complete_construction( player *p )
             here.furn_set( terp, furn_str_id( built.post_terrain ) );
         } else {
             here.ter_set( terp, ter_str_id( built.post_terrain ) );
-            // Make a roof if builded terrain should have it and it's empty
+            // Make a roof if builded terrain should have it and it's an open air
             const int_id<ter_t> post_terrain = ter_id( built.post_terrain );
             if( post_terrain->roof ) {
                 const tripoint top = terp + tripoint_above;
-                if( g->is_empty( top ) ) {
+                if( here.ter( top ) == t_open_air ) {
                     here.ter_set( top, ter_id( post_terrain->roof ) );
                 }
             }
@@ -1142,7 +1142,7 @@ bool construct::check_support( const tripoint &p )
 
 bool construct::check_support_and_nothing_above( const tripoint &p )
 {
-    return check_support( p ) && check_up_OK( p ) && check_empty( p + tripoint_above );
+    return check_support( p ) && check_empty( p ) && check_up_OK( p ) && get_map().ter( p + tripoint_above ) == t_open_air;
 }
 
 bool construct::check_deconstruct( const tripoint &p )
