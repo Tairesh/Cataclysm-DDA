@@ -1142,7 +1142,8 @@ bool construct::check_support( const tripoint &p )
 
 bool construct::check_support_and_nothing_above( const tripoint &p )
 {
-    return check_support( p ) && check_empty( p ) && check_up_OK( p ) && get_map().ter( p + tripoint_above ) == t_open_air;
+    return check_support( p ) && check_empty( p ) && check_up_OK( p ) &&
+           get_map().ter( p + tripoint_above ) == t_open_air;
 }
 
 bool construct::check_deconstruct( const tripoint &p )
