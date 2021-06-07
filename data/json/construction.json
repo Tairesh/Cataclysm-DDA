@@ -125,7 +125,7 @@
     "time": "60 m",
     "qualities": [ [ { "id": "HAMMER", "level": 2 } ] ],
     "components": [ [ [ "2x4", 12 ] ], [ [ "nail", 24 ] ] ],
-    "pre_special": "check_empty",
+    "pre_special": "check_empty_up_OK",
     "post_terrain": "t_door_frame"
   },
   {
@@ -152,7 +152,7 @@
     "time": "60 m",
     "qualities": [ [ { "id": "HAMMER", "level": 2 } ] ],
     "components": [ [ [ "2x4", 12 ] ], [ [ "nail", 24 ] ] ],
-    "pre_special": "check_empty",
+    "pre_special": "check_empty_up_OK",
     "post_terrain": "t_door_frame"
   },
   {
@@ -387,7 +387,7 @@
     "time": "75 m",
     "qualities": [ [ { "id": "HAMMER", "level": 2 } ] ],
     "components": [ [ [ "2x4", 15 ], [ "log", 2 ] ], [ [ "nail", 30 ] ] ],
-    "pre_special": "check_empty",
+    "pre_special": "check_empty_up_OK",
     "post_terrain": "t_window_empty"
   },
   {
@@ -1132,7 +1132,7 @@
     "tools": [ [ [ "oxy_torch", 10 ], [ "welder", 50 ], [ "welder_crude", 75 ], [ "toolset", 75 ] ] ],
     "components": [ [ [ "steel_plate", 2 ] ] ],
     "pre_note": "Must be supported on at least two sides.",
-    "pre_special": "check_support",
+    "pre_special": "check_support_and_nothing_above",
     "post_terrain": "t_scrap_floor"
   },
   {
@@ -1159,6 +1159,7 @@
     "tools": [ [ [ "con_mix", 50 ] ] ],
     "qualities": [ [ { "id": "SMOOTH", "level": 1 } ] ],
     "components": [ [ [ "concrete", 4 ] ], [ [ "water", 4 ] ] ],
+    "pre_special": "check_up_OK",
     "pre_terrain": "t_ov_smreb_cage",
     "post_terrain": "t_thconc_floor"
   },
@@ -1186,6 +1187,7 @@
     "tools": [ [ [ "con_mix", 50 ] ] ],
     "qualities": [ [ { "id": "SMOOTH", "level": 2 } ] ],
     "components": [ [ [ "concrete", 6 ] ], [ [ "water", 3 ] ] ],
+    "pre_special": "check_up_OK",
     "pre_terrain": "t_ov_reb_cage",
     "post_terrain": "t_strconc_floor_halfway"
   },
@@ -1200,6 +1202,7 @@
     "tools": [ [ [ "con_mix", 50 ] ] ],
     "qualities": [ [ { "id": "SMOOTH", "level": 2 } ] ],
     "components": [ [ [ "concrete", 6 ] ], [ [ "water", 3 ] ] ],
+    "pre_special": "check_up_OK",
     "pre_terrain": "t_strconc_floor_halfway",
     "post_terrain": "t_strconc_floor"
   },
@@ -1222,6 +1225,7 @@
         [ "vine_30", 1 ]
       ]
     ],
+    "pre_special": "check_up_OK",
     "pre_terrain": "t_pit",
     "post_terrain": "t_palisade"
   },
@@ -1248,6 +1252,7 @@
     "time": "180 m",
     "qualities": [ [ { "id": "HAMMER", "level": 2 } ], [ { "id": "DIG", "level": 2 } ] ],
     "components": [ [ [ "rock", 12 ] ], [ [ "mortar_build", 1 ] ] ],
+    "pre_special": "check_up_OK",
     "pre_terrain": "t_rock_wall_half",
     "post_terrain": "t_rock_wall"
   },
@@ -1274,6 +1279,7 @@
     "time": "180 m",
     "qualities": [ [ { "id": "DIG", "level": 2 } ] ],
     "components": [ [ [ "rock", 16 ] ] ],
+    "pre_special": "check_up_OK",
     "pre_terrain": "t_drystone_wall_half",
     "post_terrain": "t_drystone_wall"
   },
@@ -1300,7 +1306,7 @@
     "qualities": [ [ { "id": "HAMMER", "level": 2 } ], [ { "id": "SAW_W", "level": 2 } ] ],
     "components": [ [ [ "wood_sheet", 1 ], [ "wood_panel", 2 ] ], [ [ "2x4", 6 ] ], [ [ "nail", 40 ] ] ],
     "pre_note": "Must be supported on at least two sides.",
-    "pre_special": "check_support",
+    "pre_special": "check_support_and_nothing_above",
     "post_terrain": "t_floor"
   },
   {
@@ -1312,7 +1318,7 @@
     "time": "360 m",
     "qualities": [ { "id": "CUT", "level": 1 } ],
     "components": [ [ [ "2x4", 5 ], [ "stick", 10 ] ], [ [ "straw_pile", 60 ], [ "withered", 60 ] ], [ [ "cordage", 8, "LIST" ] ] ],
-    "pre_special": "check_support",
+    "pre_special": "check_support_and_nothing_above",
     "post_terrain": "t_dirtfloor_thatchroof"
   },
   {
@@ -1330,7 +1336,7 @@
       [ [ "birchbark", 12 ], [ "pine_bough", 12 ] ]
     ],
     "pre_note": "Must be supported on at least two sides.",
-    "pre_special": "check_support",
+    "pre_special": "check_support_and_nothing_above",
     "post_terrain": "t_floor_primitive"
   },
   {
@@ -1343,7 +1349,7 @@
     "qualities": [ [ { "id": "HAMMER", "level": 2 } ], [ { "id": "SAW_W", "level": 2 } ] ],
     "components": [ [ [ "wood_panel", 1 ] ], [ [ "2x4", 8 ] ], [ [ "nail", 20 ] ] ],
     "pre_note": "Must be supported on at least two sides.",
-    "pre_special": "check_support",
+    "pre_special": "check_support_and_nothing_above",
     "post_terrain": "t_dirtfloor"
   },
   {
