@@ -73,7 +73,6 @@
     "move_cost": 0,
     "coverage": 60,
     "connects_to": "WALL",
-    "roof": "t_flat_roof",
     "flags": [
       "TRANSPARENT",
       "FLAMMABLE",
@@ -964,7 +963,6 @@
     "color": "light_cyan",
     "move_cost": 0,
     "coverage": 90,
-    "roof": "t_flat_roof",
     "flags": [ "TRANSPARENT", "NOITEM", "WALL", "NO_SCENT", "AUTO_WALL_SYMBOL", "BLOCK_WIND" ],
     "bash": {
       "str_min": 4,
@@ -987,7 +985,6 @@
     "symbol": "LINE_OXOX",
     "color": "light_cyan",
     "move_cost": 0,
-    "roof": "t_flat_roof",
     "flags": [ "TRANSPARENT", "ALARMED", "NOITEM", "WALL", "NO_SCENT", "AUTO_WALL_SYMBOL", "BLOCK_WIND" ],
     "bash": {
       "str_min": 4,
@@ -1010,7 +1007,6 @@
     "symbol": "LINE_OXOX",
     "color": "light_cyan",
     "move_cost": 0,
-    "roof": "t_flat_roof",
     "flags": [ "TRANSPARENT", "NOITEM", "WALL", "NO_SCENT", "AUTO_WALL_SYMBOL", "MINEABLE", "BLOCK_WIND" ],
     "bash": {
       "str_min": 100,
@@ -1033,7 +1029,6 @@
     "symbol": "LINE_OXOX",
     "color": "light_cyan",
     "move_cost": 0,
-    "roof": "t_flat_roof",
     "flags": [ "TRANSPARENT", "NOITEM", "WALL", "NO_SCENT", "AUTO_WALL_SYMBOL", "MINEABLE", "BLOCK_WIND" ],
     "bash": {
       "str_min": 200,
@@ -1055,7 +1050,6 @@
     "symbol": "LINE_OXOX",
     "color": "light_cyan",
     "move_cost": 0,
-    "roof": "t_flat_roof",
     "flags": [ "TRANSPARENT", "NOITEM", "WALL", "NO_SCENT", "AUTO_WALL_SYMBOL", "MINEABLE", "BLOCK_WIND" ],
     "bash": {
       "str_min": 40,
@@ -1077,7 +1071,6 @@
     "symbol": "LINE_OXOX",
     "color": "light_gray",
     "move_cost": 0,
-    "roof": "t_flat_roof",
     "flags": [ "NOITEM", "WALL", "NO_SCENT", "AUTO_WALL_SYMBOL", "OPENCLOSE_INSIDE", "MINEABLE", "BLOCK_WIND" ],
     "open": "t_reinforced_glass_shutter_open",
     "bash": {
@@ -1104,7 +1097,6 @@
     "symbol": "LINE_OXOX",
     "color": "light_cyan",
     "move_cost": 0,
-    "roof": "t_flat_roof",
     "flags": [ "TRANSPARENT", "NOITEM", "WALL", "NO_SCENT", "AUTO_WALL_SYMBOL", "OPENCLOSE_INSIDE", "MINEABLE", "BLOCK_WIND" ],
     "close": "t_reinforced_glass_shutter",
     "bash": {
@@ -1432,7 +1424,6 @@
     "color": "light_gray",
     "move_cost": 0,
     "coverage": 100,
-    "roof": "t_flat_roof",
     "flags": [ "NOITEM", "WALL", "NO_SCENT", "AUTO_WALL_SYMBOL", "MINEABLE", "BLOCK_WIND" ],
     "connects_to": "WALL",
     "bash": {
