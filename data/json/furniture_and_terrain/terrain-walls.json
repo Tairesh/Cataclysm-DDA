@@ -790,6 +790,7 @@
     "color": "brown",
     "move_cost": 0,
     "coverage": 100,
+    "roof": "t_flat_roof",
     "flags": [ "FLAMMABLE", "NOITEM", "SUPPORTS_ROOF", "REDUCE_SCENT", "CONNECT_TO_WALL", "WALL", "BLOCK_WIND" ],
     "bash": {
       "str_min": 35,
@@ -870,6 +871,7 @@
     "color": "dark_gray",
     "move_cost": 0,
     "coverage": 100,
+    "roof": "t_metal_flat_roof",
     "flags": [ "NOITEM", "WALL", "PERMEABLE", "SUPPORTS_ROOF", "AUTO_WALL_SYMBOL", "MINEABLE" ],
     "connects_to": "WALL",
     "bash": {

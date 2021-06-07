@@ -105,6 +105,7 @@ static bool check_nothing( const tripoint & )
 }
 bool check_empty( const tripoint & ); // tile is empty
 bool check_support( const tripoint & ); // at least two orthogonal supports
+bool check_support_and_nothing_above( const tripoint & ); // 2+ supports and empty space above
 bool check_deconstruct( const tripoint & ); // either terrain or furniture must be deconstructible
 bool check_empty_up_OK( const tripoint & ); // tile is empty and below OVERMAP_HEIGHT
 bool check_up_OK( const tripoint & ); // tile is below OVERMAP_HEIGHT
@@ -1071,6 +1072,14 @@ void complete_construction( player *p )
             here.furn_set( terp, furn_str_id( built.post_terrain ) );
         } else {
             here.ter_set( terp, ter_str_id( built.post_terrain ) );
+            // Make a roof if builded terrain should have it and it's empty
+            const int_id<ter_t> post_terrain = ter_id( built.post_terrain );
+            if( post_terrain->roof ) {
+                const tripoint top = terp + tripoint_above;
+                if( g->is_empty( top ) ) {
+                    here.ter_set( top, ter_id( post_terrain->roof ) );
+                }
+            }
         }
     }
 
@@ -1129,6 +1138,11 @@ bool construct::check_support( const tripoint &p )
         }
     }
     return num_supports >= 2;
+}
+
+bool construct::check_support_and_nothing_above( const tripoint &p )
+{
+    return check_support( p ) && check_up_OK( p ) && check_empty( p + tripoint_above );
 }
 
 bool construct::check_deconstruct( const tripoint &p )
@@ -1619,6 +1633,7 @@ void load_construction( const JsonObject &jo )
             { "", construct::check_nothing },
             { "check_empty", construct::check_empty },
             { "check_support", construct::check_support },
+            { "check_support_and_nothing_above", construct::check_support_and_nothing_above },
             { "check_deconstruct", construct::check_deconstruct },
             { "check_empty_up_OK", construct::check_empty_up_OK },
             { "check_up_OK", construct::check_up_OK },
