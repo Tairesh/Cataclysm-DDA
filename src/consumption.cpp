@@ -867,7 +867,7 @@ static bool eat( item &food, player &you, bool force )
     // No coming back from here
 
     if( food.is_container() ) {
-        food.spill_contents(you);
+        food.spill_contents( you );
     }
 
     const bool hibernate = you.has_active_mutation( trait_HIBERNATE );
