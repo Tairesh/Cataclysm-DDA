@@ -3,7 +3,7 @@ concurrency: release
 on:
   push:
     branches:
-      - master
+      - dev
 jobs:
   release:
     name: Create Release
