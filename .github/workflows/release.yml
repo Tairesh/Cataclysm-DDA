@@ -13,6 +13,7 @@ jobs:
       timestamp: ${{ steps.get-timestamp.outputs.time }}
       release_already_exists: ${{ steps.tag_check.outputs.exists }}
     steps:
+      - uses: actions/checkout@v2
       - name: Get build timestamp
         id: get-timestamp
         uses: nanzm/get-time-action@v1.1
