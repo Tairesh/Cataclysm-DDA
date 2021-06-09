@@ -7,7 +7,7 @@ on:
 jobs:
   release:
     name: Create Release
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     outputs:
       upload_url: ${{ steps.create_release.outputs.upload_url }}
       timestamp: ${{ steps.get-timestamp.outputs.time }}
