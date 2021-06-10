@@ -7,7 +7,7 @@ on:
 jobs:
   release:
     name: Create Release
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     outputs:
       upload_url: ${{ steps.create_release.outputs.upload_url }}
       timestamp: ${{ steps.get-timestamp.outputs.time }}
@@ -23,8 +23,8 @@ jobs:
       - name: Generate environmental variables
         id: generate_env_vars
         run: |
-          echo "::set-output name=tag_name::cdda-tairesh-$(git rev-parse --short HEAD)"
-          echo "::set-output name=release_name::Cataclysm-DDA by Tairesh $(git rev-parse --short HEAD)"
+          echo "::set-output name=tag_name::cdda-tairesh-{{ github.run_id }}"
+          echo "::set-output name=release_name::Cataclysm-DDA build by Tairesh #{{ github.run_id }}"
       - name: Check if there is existing git tag
         id: tag_check
         uses: mukunku/tag-exists-action@v1.0.0
@@ -52,7 +52,7 @@ jobs:
           body: |
             These are the outputs for the experimental build of commit [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})
           draft: false
-          prerelease: true
+          prerelease: false
   builds:
     needs: release
     if: ${{ needs.release.outputs.release_already_exists == 'false' }}
@@ -73,7 +73,7 @@ jobs:
             ext: zip
             content: application/zip
           - name: Linux Tiles x64
-            os: ubuntu-latest
+            os: ubuntu-18.04
             mxe: none
             android: none
             tiles: 1
@@ -81,7 +81,7 @@ jobs:
             ext: tar.gz
             content: application/gzip
           - name: linux-curses-x64
-            os: ubuntu-latest
+            os: ubuntu-18.04
             mxe: none
             android: none
             tiles: 0
