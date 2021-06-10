@@ -3,7 +3,9 @@ concurrency: release
 on:
   push:
     branches:
-      - dev
+      - main
+    branches-ignore:
+      - kevin-master
 jobs:
   release:
     name: Create Release
@@ -23,8 +25,8 @@ jobs:
       - name: Generate environmental variables
         id: generate_env_vars
         run: |
-          echo "::set-output name=tag_name::cdda-tairesh-dev-$(git rev-parse --short HEAD)"
-          echo "::set-output name=release_name::Cataclysm-DDA by Tairesh dev-$(git rev-parse --short HEAD)"
+          echo "::set-output name=tag_name::cdda-tairesh-$(git rev-parse --short HEAD)"
+          echo "::set-output name=release_name::Cataclysm-DDA by Tairesh $(git rev-parse --short HEAD)"
       - name: Check if there is existing git tag
         id: tag_check
         uses: mukunku/tag-exists-action@v1.0.0
