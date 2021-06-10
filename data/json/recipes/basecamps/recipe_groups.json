@@ -50,7 +50,17 @@
         "description": "Fire Lookout Tower Base",
         "om_terrains": [ "ws_fire_lookout_tower_base" ]
       },
-      { "id": "faction_base_evac_center_0", "description": "Evac Center Base", "om_terrains": [ "evac_center_13" ] }
+      { "id": "faction_base_evac_center_0", "description": "Evac Center Base", "om_terrains": [ "evac_center_13" ] },
+      {
+        "id": "faction_base_radio_tower_0",
+        "description": "Radio Tower Without Building Base",
+        "om_terrains": [ "radio_tower" ]
+      },
+      {
+        "id": "faction_base_radio_tower_1_0",
+        "description": "Radio Tower With Building Base",
+        "om_terrains": [ "radio_tower_1" ]
+      }
     ]
   },
   {
@@ -369,5 +379,11 @@
         "description": " Hack & Download: IC datasheet archives, USB drive"
       }
     ]
+  },
+  {
+    "type": "recipe_group",
+    "id": "hack_recipes_satellite",
+    "building_type": "BASE",
+    "recipes": [ { "id": "satellitemap_npc_hack", "description": " Hack & Download: Satellite Map, sketch" } ]
   }
 ]
