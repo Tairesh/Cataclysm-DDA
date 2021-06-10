@@ -44,6 +44,11 @@
         "id": "faction_base_mansion_+4_0",
         "description": "Mansion Garden With Columns Base",
         "om_terrains": [ "mansion_+4" ]
+      },
+      {
+        "id": "faction_base_fire_lookout_tower_0",
+        "description": "Fire Lookout Tower Base",
+        "om_terrains": [ "ws_fire_lookout_tower_base" ]
       }
     ]
   },
