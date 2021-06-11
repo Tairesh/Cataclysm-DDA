@@ -9,7 +9,7 @@
     "broken_symbol": "O",
     "broken_color": "light_gray",
     "flags": [ "ROTOR" ],
-    "requirements": { 
+    "requirements": {
       "removal": { "skills": [ [ "mechanics", 8 ] ], "time": "15 h", "using": [ [ "vehicle_weld_removal", 1 ] ] },
       "install": { "skills": [ [ "mechanics", 9 ] ], "time": "10 h", "using": [ [ "welding_standard", 5 ] ] },
       "repair": { "skills": [ [ "mechanics", 10 ] ], "time": "5 h", "using": [ [ "vehicle_weld_removal", 1 ] ] }
