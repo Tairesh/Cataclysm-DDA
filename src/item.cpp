@@ -4854,7 +4854,7 @@ std::string item::tname( unsigned int quantity, bool with_prefix, unsigned int t
             contents_suffix_text = string_format( ngettext( " > %1$zd item", " > %1$zd items",
                                                   contents.num_item_stacks() ), contents.num_item_stacks() );
         }
-        if( colorprefix ) {
+        if( colorprefix.to_int() ) {
             contents_suffix_text = colorize( contents_suffix_text, colorprefix );
         }
     }
