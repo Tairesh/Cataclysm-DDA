@@ -3,7 +3,7 @@ concurrency: release
 on:
   push:
     branches-ignore:
-      - kevin-master
+      - master
 jobs:
   release:
     name: Create Release
@@ -23,8 +23,8 @@ jobs:
       - name: Generate environmental variables
         id: generate_env_vars
         run: |
-          echo "::set-output name=tag_name::cdda-tairesh-$(git rev-parse --short HEAD)"
-          echo "::set-output name=release_name::Cataclysm-DDA build by Tairesh #$(git rev-parse --short HEAD)"
+          echo "::set-output name=tag_name::cdda-tairesh-${{ steps.get-timestamp.outputs.time }}"
+          echo "::set-output name=release_name::Release ${{ steps.get-timestamp.outputs.time }}"
       - name: Check if there is existing git tag
         id: tag_check
         uses: mukunku/tag-exists-action@v1.0.0
@@ -50,6 +50,7 @@ jobs:
           tag_name: ${{ steps.generate_env_vars.outputs.tag_name }}
           release_name: ${{ steps.generate_env_vars.outputs.release_name }}
           body: |
+            This is a testing build, it probably doesn't work. See [original CDDA releases](https://github.com/CleverRaven/Cataclysm-DDA/releases) for something more stable.
             These are the outputs for the experimental build of ${{ github.ref }} commit [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})
           draft: false
           prerelease: false
