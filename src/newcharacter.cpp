@@ -3128,8 +3128,8 @@ tab_direction set_description( avatar &you, const bool allow_reroll,
         wnoutrefresh( w_profession );
     } );
 
-    int min_allowed_age = 16;
-    int max_allowed_age = 55;
+    int min_allowed_age = 6;
+    int max_allowed_age = 99;
     // in centimeters. 2 std. deviations below average female height
     int min_allowed_height = 145;
     int max_allowed_height = 200;
@@ -3298,7 +3298,7 @@ tab_direction set_description( avatar &you, const bool allow_reroll,
                 no_name_entered = you.name.empty();
             }
             you.set_base_age( rng( 16, 55 ) );
-            you.set_base_height( rng( 145, 200 ) );
+            you.set_base_height( round( you.male ? normal_roll( 176.0, 7.4 ) : normal_roll( 162.8, 7.0 ) ) );
             you.randomize_blood();
         } else if( action == "CHANGE_GENDER" ) {
             you.male = !you.male;
