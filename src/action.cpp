@@ -750,7 +750,7 @@ action_id handle_action_menu()
     if( player_character.is_crouching() ) {
         action_weightings[ACTION_TOGGLE_CROUCH] = 300;
     }
-    // If we're already crouching, make it simple to toggle crouching to off.
+    // If we're already lying, make it simple to toggle lying to off.
     if( player_character.is_prone() ) {
         action_weightings[ACTION_TOGGLE_PRONE] = 300;
     }

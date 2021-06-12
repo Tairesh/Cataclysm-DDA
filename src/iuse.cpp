@@ -7104,7 +7104,7 @@ static extended_photo_def photo_def_for_camera_point( const tripoint &aim_point,
                 if( guy->is_crouching() ) {
                     pose = _( "sits" );
                 } else if( guy->is_prone() ) {
-                    pose = _( "prone" );
+                    pose = _( "lies" );
                 } else {
                     pose = _( "stands" );
                 }
