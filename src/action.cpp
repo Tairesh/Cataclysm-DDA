@@ -170,6 +170,8 @@ std::string action_ident( action_id act )
             return "toggle_run";
         case ACTION_TOGGLE_CROUCH:
             return "toggle_crouch";
+        case ACTION_TOGGLE_PRONE:
+            return "toggle_prone";
         case ACTION_OPEN_MOVEMENT:
             return "open_movement";
         case ACTION_OPEN:
@@ -746,6 +748,10 @@ action_id handle_action_menu()
     if( player_character.is_crouching() ) {
         action_weightings[ACTION_TOGGLE_CROUCH] = 300;
     }
+    // If we're already lying, make it simple to toggle lying to off.
+    if( player_character.is_prone() ) {
+        action_weightings[ACTION_TOGGLE_PRONE] = 300;
+    }
 
     map &here = get_map();
     // Check if we're on a vehicle, if so, vehicle controls should be top.
@@ -904,6 +910,7 @@ action_id handle_action_menu()
             REGISTER_ACTION( ACTION_RESET_MOVE );
             REGISTER_ACTION( ACTION_TOGGLE_RUN );
             REGISTER_ACTION( ACTION_TOGGLE_CROUCH );
+            REGISTER_ACTION( ACTION_TOGGLE_PRONE );
             REGISTER_ACTION( ACTION_OPEN_MOVEMENT );
             REGISTER_ACTION( ACTION_FIRE );
             REGISTER_ACTION( ACTION_RELOAD_ITEM );
