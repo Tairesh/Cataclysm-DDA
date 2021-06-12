@@ -2,8 +2,8 @@ name: "Experimental Release"
 concurrency: release
 on:
   push:
-    branches-ignore:
-      - master
+    branches:
+    - main
 jobs:
   release:
     name: Create Release
