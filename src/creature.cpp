@@ -301,7 +301,7 @@ bool Creature::sees( const Creature &critter ) const
             if( ch->is_crouching() ) {
                 vision_modifier = 30 - 0.5 * coverage * size_modifier;
             } else if( ch->is_prone() ) {
-                vision_modifier = 30 - 0.9 * coverage * size_modifier;
+                vision_modifier = 30 - 0.3 * coverage * size_modifier;
             }
 
             if( vision_modifier > 1 ) {
