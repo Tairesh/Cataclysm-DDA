@@ -23,7 +23,6 @@ enum class steed_type : int {
 };
 
 enum class move_mode_type : int {
-    PRONE,
     CROUCHING,
     WALKING,
     RUNNING

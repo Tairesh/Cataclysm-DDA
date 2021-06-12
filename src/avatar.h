@@ -237,8 +237,6 @@ class avatar : public player
         void toggle_run_mode();
         // Toggles crouching on/off.
         void toggle_crouch_mode();
-        // Toggles lying down on/off.
-        void toggle_prone_mode();
 
         bool wield( item_location target );
         bool wield( item &target ) override;
