@@ -3298,6 +3298,8 @@ tab_direction set_description( avatar &you, const bool allow_reroll,
                 no_name_entered = you.name.empty();
             }
             you.set_base_age( rng( 16, 55 ) );
+            // Height distribution data is taken from this paper:
+            // http://www.biostat.jhsph.edu/bstcourse/bio751/papers/bimodalHeight.pdf
             you.set_base_height( round( you.male ? normal_roll( 176.0, 7.4 ) : normal_roll( 162.8, 7.0 ) ) );
             you.randomize_blood();
         } else if( action == "CHANGE_GENDER" ) {
