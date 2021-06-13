@@ -322,8 +322,8 @@ void trading_window::setup_trade( int cost, npc &np )
     // Trading is not linear - starving NPC may pay $100 for 3 jerky, but not $100000 for 300 jerky
     theirs = npc_trading::init_buying( player_character, np, true );
     yours = npc_trading::init_buying( np, player_character, false );
-    
-    // Populate each item_pricing's @parent and @contents pointers, so that it's way faster to 
+
+    // Populate each item_pricing's @parent and @contents pointers, so that it's way faster to
     // select / deselect and calculate prices of items and containers during trading
     item_pricing::populate_container_pointers( theirs );
     item_pricing::populate_container_pointers( yours );
@@ -346,7 +346,7 @@ void trading_window::update_win( npc &np, const std::string &deal )
 
     for( item_pricing &pricing : yours ) {
         if( pricing.marked ) {
-             added.push_back( pricing.loc.get_item() );
+            added.push_back( pricing.loc.get_item() );
         }
     }
 
@@ -669,11 +669,9 @@ bool trading_window::perform_trade( npc &np, const std::string &deal )
 
                 // We make the assumption that reaching SELECTED=1 and MARKED=0 is impossible.
                 // see npctrade.h for difference between variables.
-                if( !ip.selected && ip.marked )
-                {
+                if( !ip.selected && ip.marked ) {
                     ip.marked = false;
-                } else
-                {
+                } else {
                     ip.selected = !ip.selected;
                     ip.marked = !ip.marked;
                 }
@@ -681,16 +679,14 @@ bool trading_window::perform_trade( npc &np, const std::string &deal )
                 // get_change_amount() depends on ip.selected and ip.marked, so it needs to be executed
                 // after the selection has been changed.
                 int change_amount = get_change_amount( ip, true );
-                if( change_amount < 1 )
-                {
+                if( change_amount < 1 ) {
                     ip.marked = old_is_marked;
                     ip.selected = old_is_selected;
                     continue;
                 }
 
                 // Don't trade items in sealed containers without their container.
-                if( ip.selected && ip.loc.has_parent() )
-                {
+                if( ip.selected && ip.loc.has_parent() ) {
                     item_contents::sealed_summary sealed_container =
                         ip.loc.parent_item()->contents.get_sealed_summary();
 
@@ -711,8 +707,7 @@ bool trading_window::perform_trade( npc &np, const std::string &deal )
                 }
 
                 // If current item is a container, SELECT and MARK the container. Only MARK all of the contents.
-                if( ip.is_container )
-                {
+                if( ip.is_container ) {
                     std::vector<item_pricing *> contents = ip.get_contents_rec();
 
                     for( item_pricing *content : contents ) {
@@ -741,8 +736,7 @@ bool trading_window::perform_trade( npc &np, const std::string &deal )
 
                 // If we deselected an item inside a container, we also want to deselect the container itself,
                 // cause it would be difficult to handle selling a whole container without one item inside.
-                if( !ip.selected && !ip.marked && ip.parent && ip.parent->marked )
-                {
+                if( !ip.selected && !ip.marked && ip.parent && ip.parent->marked ) {
 
                     item_pricing *ip_container = &ip;
 
@@ -800,7 +794,7 @@ bool trading_window::perform_trade( npc &np, const std::string &deal )
         }
     }
 
-return confirm;
+    return confirm;
 }
 
 // Recalculates the money, volume, and weight balance
