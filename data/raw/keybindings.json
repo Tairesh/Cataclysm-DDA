@@ -2438,7 +2438,7 @@
   },
   {
     "type": "keybinding",
-    "name": "Cycle move mode (run/walk/crouch)",
+    "name": "Cycle move mode (run/walk/crouch/prone)",
     "category": "DEFAULTMODE",
     "id": "cycle_move"
   },
@@ -2459,6 +2459,12 @@
     "name": "Toggle Crouch",
     "category": "DEFAULTMODE",
     "id": "toggle_crouch"
+  },
+  {
+    "type": "keybinding",
+    "name": "Toggle Prone",
+    "category": "DEFAULTMODE",
+    "id": "toggle_prone"
   },
   {
     "type": "keybinding",
