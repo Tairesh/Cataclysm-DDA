@@ -101,7 +101,8 @@ static const mtype_id mon_zombie_crawler( "mon_zombie_crawler" );
 
 static const quality_id qual_LOCKPICK( "LOCKPICK" );
 
-std::string activity_actor::get_progress_message( const player_activity &act ) const
+std::string activity_actor::get_progress_message( const player_activity &act,
+        const Character & ) const
 {
     if( act.moves_total > 0 ) {
         const int pct = ( ( act.moves_total - act.moves_left ) * 100 ) / act.moves_total;
@@ -1869,13 +1870,66 @@ void craft_activity_actor::finish( player_activity &act, Character & )
     act.set_to_null();
 }
 
-std::string craft_activity_actor::get_progress_message( const player_activity & ) const
+std::string craft_activity_actor::get_progress_message( const player_activity &,
+        const Character &u ) const
 {
     if( !craft_item ) {
         //We have somehow lost the craft item.  This will be handled in do_turn in the check_if_craft_is_ok call.
         return "";
     }
-    return craft_item.get_item()->tname();
+
+    const item &craft = *craft_item.get_item();
+    const cata::optional<tripoint> location = craft_item.where() == item_location::type::character
+            ? cata::optional<tripoint>() : cata::optional<tripoint>( craft_item.position() );
+    const recipe &rec = craft.get_making();
+
+    const float light_mult = u.lighting_craft_speed_multiplier( rec );
+    const float morale_mult = u.morale_crafting_speed_multiplier( rec );
+    const float workbench_mult = u.workbench_crafting_speed_multiplier( craft, location );
+    const int assistants = u.available_assistant_count( rec );
+    const float assist_mult = 1.0 / ( assistants >= 2 ? 0.6 : ( assistants == 1 ? 0.75 : 1.0 ) );
+    const float speed_mult = u.get_speed() / 100.0f;
+    const float mut_mult = u.mutation_value( "crafting_speed_multiplier" );
+    const float prof_mult = 1.0 / rec.proficiency_time_maluses( u );
+
+    const float total_mult = light_mult * workbench_mult * morale_mult * mut_mult * speed_mult *
+                             prof_mult * assist_mult;
+
+    const double remaining_percentage = 1.0 - craft.item_counter / 10'000'000.0;
+    const float total_moves = std::max( static_cast<int64_t>( 1 ),
+                                        rec.batch_time( u, craft.charges, light_mult * workbench_mult * morale_mult * mut_mult,
+                                                assistants ) );
+    int remaining_turns = remaining_percentage * total_moves / 100;
+    std::string time_desc = string_format( _( "Time left: %s" ),
+                                           to_string( time_duration::from_turns( remaining_turns ) ) );
+
+    const std::array<std::pair<float, std::string>, 8> mults_with_data = {{
+            { total_mult, _( "Total" ) },
+            { speed_mult, _( "Speed" ) },
+            { light_mult, _( "Light" ) },
+            { workbench_mult, _( "Workbench" ) },
+            { prof_mult, _( "Proficiencies" ) },
+            { morale_mult, _( "Morale" ) },
+            { assist_mult, _( "Assistants" ) },
+            { mut_mult, _( "Mutations" ) },
+        }
+    };
+    std::string mults_desc = _( "Crafting speed multipliers:\n" );
+    // Hack to make sure total always shows
+    bool first = true;
+    for( const std::pair<float, std::string> &p : mults_with_data ) {
+        int percent = static_cast<int>( p.first * 100 );
+        if( first || percent != 100 ) {
+            nc_color col = percent > 100 ? c_green : c_red;
+            std::string colorized = colorize( std::to_string( percent ) + '%', col );
+            mults_desc += string_format( _( " %s: %s\n" ), p.second, colorized );
+        }
+        first = false;
+    }
+
+    return string_format( _( "%s\n\n%s\n\n%s" ), craft.tname(),
+                          time_desc,
+                          mults_desc );
 }
 
 float craft_activity_actor::exertion_level() const
