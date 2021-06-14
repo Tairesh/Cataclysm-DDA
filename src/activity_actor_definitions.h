@@ -85,7 +85,7 @@ class aim_activity_actor : public activity_actor
         std::unique_ptr<activity_actor> clone() const override {
             return std::make_unique<aim_activity_actor>( *this );
         }
-        std::string get_progress_message( const player_activity & ) const override {
+        std::string get_progress_message( const player_activity &, const Character & ) const override {
             return std::string();
         }
         void serialize( JsonOut &jsout ) const override;
@@ -298,7 +298,7 @@ class hacking_activity_actor : public activity_actor
             return std::make_unique<hacking_activity_actor>( *this );
         }
 
-        std::string get_progress_message( const player_activity & ) const override {
+        std::string get_progress_message( const player_activity &, const Character & ) const override {
             return std::string();
         }
         void serialize( JsonOut &jsout ) const override;
@@ -367,7 +367,7 @@ class move_items_activity_actor : public activity_actor
             return std::make_unique<move_items_activity_actor>( *this );
         }
 
-        std::string get_progress_message( const player_activity & ) const override {
+        std::string get_progress_message( const player_activity &, const Character & ) const override {
             return std::string();
         }
 
@@ -408,7 +408,7 @@ class pickup_activity_actor : public activity_actor
             return std::make_unique<pickup_activity_actor>( *this );
         }
 
-        std::string get_progress_message( const player_activity & ) const override {
+        std::string get_progress_message( const player_activity &, const Character & ) const override {
             return std::string();
         }
 
@@ -480,7 +480,7 @@ class migration_cancel_activity_actor : public activity_actor
             return std::make_unique<migration_cancel_activity_actor>( *this );
         }
 
-        std::string get_progress_message( const player_activity & ) const override {
+        std::string get_progress_message( const player_activity &, const Character & ) const override {
             return std::string();
         }
 
@@ -599,7 +599,7 @@ class try_sleep_activity_actor : public activity_actor
             return std::make_unique<try_sleep_activity_actor>( *this );
         }
 
-        std::string get_progress_message( const player_activity & ) const override {
+        std::string get_progress_message( const player_activity &, const Character & ) const override {
             return std::string();
         }
 
@@ -668,7 +668,7 @@ class craft_activity_actor : public activity_actor
             return std::make_unique<craft_activity_actor>( *this );
         }
 
-        std::string get_progress_message( const player_activity & ) const override;
+        std::string get_progress_message( const player_activity &, const Character & ) const override;
 
         float exertion_level() const override;
 
@@ -712,7 +712,7 @@ class workout_activity_actor : public activity_actor
             return std::make_unique<workout_activity_actor>( *this );
         }
 
-        std::string get_progress_message( const player_activity & ) const override {
+        std::string get_progress_message( const player_activity &, const Character & ) const override {
             return std::string();
         }
 
@@ -764,7 +764,7 @@ class drop_activity_actor : public activity_actor
             return std::make_unique<drop_activity_actor>( *this );
         }
 
-        std::string get_progress_message( const player_activity & ) const override {
+        std::string get_progress_message( const player_activity &, const Character & ) const override {
             return std::string();
         }
 
@@ -799,7 +799,7 @@ class stash_activity_actor: public activity_actor
             return std::make_unique<stash_activity_actor>( *this );
         }
 
-        std::string get_progress_message( const player_activity & ) const override {
+        std::string get_progress_message( const player_activity &, const Character & ) const override {
             return std::string();
         }
 

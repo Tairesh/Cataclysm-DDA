@@ -82,7 +82,7 @@ class activity_actor
         /**
          * Used to generate the progress display at the top of the screen
          */
-        virtual std::string get_progress_message( const player_activity &act ) const;
+        virtual std::string get_progress_message( const player_activity &act, const Character &u ) const;
 
         /**
          * Called every turn, in player_activity::do_turn

@@ -181,7 +181,7 @@ cata::optional<std::string> player_activity::get_progress_message( const avatar 
     }
 
     if( actor ) {
-        extra_info = actor->get_progress_message( *this );
+        extra_info = actor->get_progress_message( *this, u );
     }
 
     return extra_info.empty() ? string_format( _( "%s…" ),

@@ -2509,6 +2509,8 @@ class Character : public Creature, public visitable
         // crafting.cpp
         float morale_crafting_speed_multiplier( const recipe &rec ) const;
         float lighting_craft_speed_multiplier( const recipe &rec ) const;
+        float workbench_crafting_speed_multiplier( const item &craft,
+                const cata::optional<tripoint> &loc ) const;
         float crafting_speed_multiplier( const recipe &rec, bool in_progress = false ) const;
         /** For use with in progress crafts */
         float crafting_speed_multiplier( const item &craft, const cata::optional<tripoint> &loc ) const;
