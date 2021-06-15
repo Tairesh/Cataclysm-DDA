@@ -1009,6 +1009,7 @@ class Character : public Creature, public visitable
 
         bool is_deaf() const;
         bool is_mute() const;
+        bool is_speaking_english() const;
         /** Returns true if the player has two functioning arms */
         bool has_two_arms() const;
         /** Returns the number of functioning arms */

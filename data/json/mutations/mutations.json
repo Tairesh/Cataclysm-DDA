@@ -1043,6 +1043,16 @@
   },
   {
     "type": "mutation",
+    "id": "NOENGLISH",
+    "name": { "str": "Can't speak English" },
+    "points": -2,
+    "description": "You don't know modern English, and as such you're not able to talk NPCs.",
+    "starting_trait": true,
+    "valid": false,
+    "purifiable": false
+  },
+  {
+    "type": "mutation",
     "id": "SLOWLEARNER",
     "name": { "str": "Slow Learner" },
     "points": -3,
