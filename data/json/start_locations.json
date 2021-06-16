@@ -484,7 +484,7 @@
   {
     "type": "start_location",
     "id": "sloc_light_industry",
-    "name": "Industiral Offices",
+    "name": "Industrial Offices",
     "terrain": [ "s_lightindustry_10" ]
   }
 ]
