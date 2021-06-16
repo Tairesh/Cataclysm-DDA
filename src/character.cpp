@@ -5367,7 +5367,7 @@ bool Character::is_deaf() const
              && in_sleep_state() );
 }
 
-bool Character::is_speaking_english()
+bool Character::is_speaking_english() const
 {
     return !has_trait( trait_NOENGLISH );
 }
