@@ -8,12 +8,8 @@
     "color": "light_blue",
     "broken_symbol": "O",
     "broken_color": "light_gray",
-    "flags": [ "ROTOR" ],
-    "requirements": {
-      "removal": { "skills": [ [ "mechanics", 8 ] ], "time": "15 h", "using": [ [ "vehicle_weld_removal", 1 ] ] },
-      "install": { "skills": [ [ "mechanics", 9 ] ], "time": "10 h", "using": [ [ "welding_standard", 5 ] ] },
-      "repair": { "skills": [ [ "mechanics", 10 ] ], "time": "5 h", "using": [ [ "vehicle_weld_removal", 1 ] ] }
-    },
+    "flags": [ "ROTOR", "NO_INSTALL_PLAYER", "NO_REPAIR", "SMASH_REMOVE" ],
+    "requirements": { "removal": { "skills": [ [ "mechanics", 3 ] ], "time": "1 h", "using": [ [ "vehicle_weld_removal", 1 ] ] } },
     "description": "A set of aerofoil helicopter rotors, when spun at high speed, they generate thrust via lift."
   },
   {
