@@ -9,6 +9,7 @@
 #include <new>
 #include <set>
 #include <unordered_map>
+#include <unordered_set>
 #include <utility>
 #include <vector>
 
@@ -491,6 +492,8 @@ class overmapbuffer
         mutable std::set<point_abs_om> known_non_existing;
         // Cached result of previous call to overmapbuffer::get_existing
         overmap mutable *last_requested_overmap;
+        // Set of globally unique overmap specials that have already been placed
+        std::unordered_set<overmap_special_id> placed_unique_specials;
 
         /**
          * Get a list of notes in the (loaded) overmaps.
@@ -524,6 +527,15 @@ class overmapbuffer
                                 const tripoint_abs_omt &loc );
         bool check_overmap_special_type_existing( const overmap_special_id &id,
                 const tripoint_abs_omt &loc );
+
+        /**
+         * Adds the given globally unique overmap special to the list of placed specials.
+         */
+        void add_unique_special( const overmap_special_id &id );
+        /**
+         * Returns true if the given globally unique overmap special has already been placed.
+         */
+        bool contains_unique_special( const overmap_special_id &id ) const;
     private:
         /**
          * Go thorough the monster groups of the overmap and move out-of-bounds
