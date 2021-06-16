@@ -3473,7 +3473,7 @@ void overmap::place_ravines()
                        settings.overmap_ravine.ravine_width * 3 ) ) {
             continue;
         }
-        const auto path = pf::find_path( origin, destination, point( OMAPX, OMAPY ), estimate );
+        const auto path = pf::find_path_4dir( origin, destination, point( OMAPX, OMAPY ), estimate );
         for( const auto &node : path.nodes ) {
             const point_om_omt p( node.pos.x, node.pos.y );
             for( int i = 1 - settings.overmap_ravine.ravine_width; i < settings.overmap_ravine.ravine_width;
@@ -3563,7 +3563,7 @@ pf::path<point_om_omt> overmap::lay_out_connection(
         return existency_mult * dist + subtype->basic_cost;
     };
 
-    return pf::find_path( source, dest, point_om_omt( OMAPX, OMAPY ), estimate );
+    return pf::find_path_4dir( source, dest, point_om_omt( OMAPX, OMAPY ), estimate );
 }
 
 pf::path<point_om_omt> overmap::lay_out_street(

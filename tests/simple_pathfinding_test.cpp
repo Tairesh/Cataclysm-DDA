@@ -16,7 +16,7 @@ static void test_path()
         return 1;
     };
 
-    pf::path<Point> pth = pf::find_path( start, finish, max, estimate );
+    pf::path<Point> pth = pf::find_path_4dir( start, finish, max, estimate );
     REQUIRE( pth.nodes.size() == 4 );
     CHECK( pth.nodes[3].pos == Point() );
     // NOLINTNEXTLINE(cata-use-named-point-constants)

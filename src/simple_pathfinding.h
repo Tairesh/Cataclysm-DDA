@@ -44,12 +44,14 @@ struct path {
  * @param estimator BinaryPredicate( node &previous, node *current ) returns
  * integer estimation (smaller - better) for the current node or a negative value
  * if the node is unsuitable.
+ * @param offsets std::array<point>
  */
-template<typename Point, class BinaryPredicate>
+template<typename Point, class BinaryPredicate, class Offsets>
 path<Point> find_path( const Point &source,
                        const Point &dest,
                        const Point &max,
-                       BinaryPredicate estimator )
+                       BinaryPredicate estimator,
+                       Offsets offsets )
 {
     static_assert( Point::dimension == 2, "This pathfinding function doesn't work for tripoints" );
     using Traits = point_traits<Point>;
@@ -110,7 +112,7 @@ path<Point> find_path( const Point &source,
                 const int n = map_index( p );
                 const int dir = dirs[n];
                 res.nodes.emplace_back( p, dir );
-                p += four_adjacent_offsets[dir];
+                p += offsets[dir];
             }
 
             res.nodes.emplace_back( p, -1 );
@@ -118,8 +120,8 @@ path<Point> find_path( const Point &source,
             return res;
         }
 
-        for( int dir = 0; dir < 4; dir++ ) {
-            const Point p = mn.pos + four_adjacent_offsets[dir];
+        for( size_t dir = 0; dir < offsets.size(); dir++ ) {
+            const Point p = mn.pos + offsets[dir];
             const int n = map_index( p );
             // don't allow:
             // * out of bounds
@@ -136,7 +138,7 @@ path<Point> find_path( const Point &source,
             }
             // record direction to shortest path
             if( open[n] == 0 || open[n] > cn.priority ) {
-                dirs[n] = ( dir + 2 ) % 4;
+                dirs[n] = ( dir + offsets.size() / 2 ) % offsets.size();
 
                 if( open[n] != 0 ) {
                     while( nodes[i].top().pos != p ) {
@@ -161,6 +163,24 @@ path<Point> find_path( const Point &source,
     }
 
     return res;
+}
+
+template<typename Point, class BinaryPredicate>
+path<Point> find_path_4dir( const Point &source,
+                            const Point &dest,
+                            const Point &max,
+                            BinaryPredicate estimator )
+{
+    return find_path( source, dest, max, estimator, four_adjacent_offsets );
+}
+
+template<typename Point, class BinaryPredicate>
+path<Point> find_path_8dir( const Point &source,
+                            const Point &dest,
+                            const Point &max,
+                            BinaryPredicate estimator )
+{
+    return find_path( source, dest, max, estimator, eight_adjacent_offsets );
 }
 
 template<typename Point = point>
