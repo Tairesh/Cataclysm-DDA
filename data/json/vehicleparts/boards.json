@@ -17,7 +17,7 @@
       "vertical_2_left": "H",
       "vertical_2_right": "H"
     },
-    "flags": [ "OBSTACLE", "NO_ROOF_NEEDED" ]
+    "flags": [ "OBSTACLE", "NO_ROOF_NEEDED", "SIMPLE_PART" ]
   },
   {
     "abstract": "board_abstract",

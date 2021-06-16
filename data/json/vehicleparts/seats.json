@@ -34,7 +34,7 @@
     "damage_reduction": { "all": 2, "bash": 5 },
     "description": "A place to sit, or sleep if you're desperate.",
     "durability": 300,
-    "flags": [ "SEAT", "BOARDABLE", "CARGO", "BELTABLE" ],
+    "flags": [ "SEAT", "BOARDABLE", "CARGO", "BELTABLE", "SIMPLE_PART" ],
     "floor_bedding_warmth": 200,
     "item": "seat",
     "location": "center",
@@ -70,7 +70,7 @@
     "damage_reduction": { "all": 3, "bash": 5 },
     "description": "A place to sit, and the backrest reclines to make it an uncomfortable bed.",
     "durability": 100,
-    "flags": [ "BED", "SEAT", "BOARDABLE", "BELTABLE", "CARGO" ],
+    "flags": [ "BED", "SEAT", "BOARDABLE", "BELTABLE", "CARGO", "SIMPLE_PART" ],
     "floor_bedding_warmth": 250,
     "item": "seat",
     "location": "center",
@@ -106,7 +106,7 @@
     "damage_reduction": { "all": 3, "bash": 5 },
     "description": "A benchlike seat.  Mostly found in the second row, also known as the back or rear seat.",
     "durability": 300,
-    "flags": [ "BED", "SEAT", "BOARDABLE", "BELTABLE", "CARGO" ],
+    "flags": [ "BED", "SEAT", "BOARDABLE", "BELTABLE", "CARGO", "SIMPLE_PART" ],
     "floor_bedding_warmth": 500,
     "item": "seat",
     "location": "center",
@@ -155,7 +155,7 @@
       "removal": { "skills": [ [ "mechanics", 1 ] ], "time": "200 s", "using": [ [ "vehicle_wrench_2", 1 ] ] },
       "repair": { "skills": [ [ "mechanics", 2 ] ], "time": "20 s", "using": [ [ "welding_standard", 5 ] ] }
     },
-    "flags": [ "SEAT", "BOARDABLE", "FOLDABLE", "NONBELTABLE" ],
+    "flags": [ "SEAT", "BOARDABLE", "FOLDABLE", "NONBELTABLE", "SIMPLE_PART" ],
     "breaks_into": [ { "item": "leather", "prob": 50 }, { "item": "scrap", "count": [ 1, 2 ] } ]
   },
   {
@@ -180,7 +180,7 @@
       "removal": { "skills": [ [ "mechanics", 2 ] ], "time": "200 s", "using": [ [ "vehicle_wrench_2", 1 ] ] },
       "repair": { "skills": [ [ "mechanics", 3 ] ], "time": "20 s", "using": [ [ "welding_standard", 5 ] ] }
     },
-    "flags": [ "SEAT", "BOARDABLE", "FOLDABLE", "NONBELTABLE" ],
+    "flags": [ "SEAT", "BOARDABLE", "FOLDABLE", "NONBELTABLE", "SIMPLE_PART" ],
     "breaks_into": [ { "item": "rag", "count": [ 1, 6 ] } ]
   },
   {
