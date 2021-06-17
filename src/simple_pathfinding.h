@@ -147,6 +147,23 @@ path<Point> find_path( const Point &source,
             // record direction to shortest path
             if( open[n] == 0 || open[n] > cn.priority ) {
                 dirs[n] = ( dir + offsets.size() / 2 ) % offsets.size();
+
+                if( open[n] != 0 ) {
+                    while( nodes[i].top().pos != p ) {
+                        nodes[1 - i].push( nodes[i].top() );
+                        nodes[i].pop();
+                    }
+                    nodes[i].pop();
+
+                    if( nodes[i].size() > nodes[1 - i].size() ) {
+                        i = 1 - i;
+                    }
+                    while( !nodes[i].empty() ) {
+                        nodes[1 - i].push( nodes[i].top() );
+                        nodes[i].pop();
+                    }
+                    i = 1 - i;
+                }
                 open[n] = cn.priority;
                 nodes[i].push( cn );
             }
