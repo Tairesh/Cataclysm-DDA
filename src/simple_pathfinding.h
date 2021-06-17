@@ -76,7 +76,7 @@ path<Point> find_path( const Point &source,
         return res;
     }
 
-    const Node first_node( source, offsets.size()+1, 1000 );
+    const Node first_node( source, offsets.size() + 1, 1000 );
 
     if( estimator( first_node, nullptr ) == rejected ) {
         return res;
