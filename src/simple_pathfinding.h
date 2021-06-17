@@ -66,12 +66,6 @@ path<Point> find_path( const Point &source,
         return Traits::y( p ) * Traits::x( max ) + Traits::x( p );
     };
 
-    const auto distance = [ max ]( const Point & p1, const Point & p2 ) {
-        return std::round( std::sqrt( static_cast<double>
-                                      ( ( Traits::x( p1 ) - Traits::x( p2 ) ) * ( Traits::x( p1 ) - Traits::x( p2 ) ) ) +
-                                      ( ( Traits::y( p1 ) - Traits::y( p2 ) ) * ( Traits::y( p1 ) - Traits::y( p2 ) ) ) ) );
-    };
-
     path<Point> res;
 
     if( source == dest ) {
@@ -82,7 +76,7 @@ path<Point> find_path( const Point &source,
         return res;
     }
 
-    const Node first_node( source, 5, 1000 );
+    const Node first_node( source, offsets.size()+1, 1000 );
 
     if( estimator( first_node, nullptr ) == rejected ) {
         return res;
@@ -137,9 +131,7 @@ path<Point> find_path( const Point &source,
             }
 
             Node cn( p, dir );
-            // heuristic distance
-            const int h = distance( p, dest );
-            cn.priority = estimator( cn, &mn ) + h;
+            cn.priority = estimator( cn, &mn );
 
             if( cn.priority == rejected ) {
                 continue;
