@@ -44,7 +44,7 @@ struct path {
  * @param estimator BinaryPredicate( node &previous, node *current ) returns
  * integer estimation (smaller - better) for the current node or a negative value
  * if the node is unsuitable.
- * @param offsets std::array<point>
+ * @param offsets array of points
  */
 template<typename Point, class BinaryPredicate, class Offsets>
 path<Point> find_path( const Point &source,
