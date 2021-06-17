@@ -1859,6 +1859,22 @@
     "flags": [ "SEES", "HEARS", "SMELLS", "CLIMBS", "LARVA", "STUMBLES", "PATH_AVOID_FIRE" ]
   },
   {
+    "id": "mon_aphid_small",
+    "type": "MONSTER",
+    "name": { "str": "big aphid" },
+    "description": "This huge aphid is as big as a hamster.  It's not as thirsty as bigger ones, but a herd of these could eat your crops easily.",
+    "copy-from": "mon_aphid",
+    "proportional": { "hp": 0.5, "speed": 1.1, "morale": 0.67, "melee_dice_sides": 0.5 },
+    "volume": "96 ml",
+    "weight": "96 g",
+    "special_attacks": [ [ "EAT_FOOD", 400 ], [ "EAT_CROP", 600 ] ],
+    "delete": {
+    "reproduction": { "baby_monster": "mon_aphid", "baby_count": 1, "baby_timer": 20 },
+    "baby_flags": [ "SPRING", "SUMMER"]  },
+    "biosignature": { "biosig_item": "honeydew", "biosig_timer": 7000 },
+    "upgrades": { "half_life": 14, "into": "mon_aphid" }
+  },
+  {
     "id": "mon_aphid",
     "type": "MONSTER",
     "name": { "str": "giant aphid" },
@@ -1893,7 +1909,7 @@
     "reproduction": { "baby_monster": "mon_aphid", "baby_count": 1, "baby_timer": 20 },
     "baby_flags": [ "SPRING", "SUMMER" ],
     "biosignature": { "biosig_item": "honeydew", "biosig_timer": 600 },
-    "flags": [ "SEES", "HEARS", "SMELLS", "CLIMBS", "PATH_AVOID_FIRE", "PATH_AVOID_FALL" ]
+    "flags": [ "SEES", "HEARS", "SMELLS", "CLIMBS", "PATH_AVOID_FIRE", "PATH_AVOID_FALL", "SWARMS" ]
   },
   {
     "id": "mon_mantis_small",
@@ -1911,7 +1927,7 @@
     "id": "mon_mantis_giant",
     "type": "MONSTER",
     "name": { "str": "giant praying mantis" },
-    "description": "An enormous green creature grown about a size of a bear.  It dances weirdly and looks ready to chop your head off at any moment.",
+    "description": "An enormous green creature grown about the size of a bear.  It dances weirdly and looks ready to chop your head off at any moment.",
     "default_faction": "mantis",
     "bodytype": "insect",
     "species": [ "INSECT" ],
@@ -1922,8 +1938,8 @@
     "material": [ "iflesh" ],
     "symbol": "M",
     "color": "light_green",
-    "aggression": 50,
-    "morale": 80,
+    "aggression": 20,
+    "morale": 30,
     "melee_skill": 8,
     "melee_dice": 1,
     "melee_dice_sides": 6,
@@ -1932,18 +1948,18 @@
     "armor_bash": 10,
     "armor_cut": 16,
     "armor_bullet": 13,
-    "vision_day": 15,
-    "vision_night": 5,
+    "vision_day": 8,
+    "vision_night": 4,
     "harvest": "arachnid",
     "anger_triggers": [ "PLAYER_WEAK", "PLAYER_CLOSE" ],
-    "fear_triggers": [ "FIRE" ],
+    "fear_triggers": [ "FIRE", "HURT" ],
     "death_function": [ "NORMAL" ],
     "special_attacks": [
       [ "RANGED_PULL", 30 ],
       [ "GRAB_DRAG", 10 ],
       { "type": "leap", "cooldown": 8, "max_range": 5, "allow_no_target": false }
     ],
-    "flags": [ "POISON", "SEES", "HEARS", "SMELLS", "CLIMBS", "PATH_AVOID_FIRE", "PATH_AVOID_FALL", "STUMBLES" ]
+    "flags": [ "SEES", "HEARS", "CLIMBS", "PATH_AVOID_FIRE", "PATH_AVOID_FALL" ]
   },
   {
     "id": "mon_mantis_mega",
@@ -1959,13 +1975,16 @@
     "melee_dice": 2,
     "melee_cut": 20,
     "dodge": 2,
+    "attack_cost":25,
     "special_attacks": [
       {
         "type": "bite",
         "cooldown": 4,
         "accuracy": 5,
-        "damage_max_instance": [ { "damage_type": "stab", "amount": 15, "armor_multiplier": 0.6 } ]
-      }
+        "no_infection_chance": 25,
+        "damage_max_instance": [ { "damage_type": "stab", "amount": 15, "armor_penetration": 0.6 } ]
+      },
+      [ "RANGED_PULL", 30 ], [ "GRAB_DRAG", 10 ], { "type": "leap", "cooldown": 8, "max_range": 5, "allow_no_target": false }
     ],
     "extend": { "flags": [ "DESTROYS", "PUSH_MON", "PUSH_VEH" ] },
     "delete": { "type": "leap", "cooldown": 8, "max_range": 5, "allow_no_target": false }
@@ -2001,7 +2020,7 @@
     "anger_triggers": [ "HURT", "SOUND", "STALK" ],
     "fear_triggers": [ "FIRE" ],
     "death_function": [ "NORMAL" ],
-    "flags": [ "POISON", "ATTACKMON", "BORES", "CAN_DIG", "HEARS", "KEENNOSE", "PATH_AVOID_DANGER_1", "SMELLS", "WARM" ],
+    "flags": [ "SEES", "BORES", "DESTROYS", "PUSH_VEH", "HEARS", "KEENNOSE", "PATH_AVOID_DANGER_1", "SMELLS" ],
     "//": "Reinsert GOODHEARING when z-level tunneling is possible."
   },
   {
@@ -2014,21 +2033,21 @@
     "species": [ "INSECT" ],
     "volume": "400 L",
     "weight": "533 kg",
-    "hp": 160,
+    "hp": 350,
     "speed": 110,
     "material": [ "iflesh" ],
     "symbol": "B",
     "color": "red",
-    "morale": 80,
-    "aggression": 40,
+    "morale": 40,
+    "aggression": 20,
     "melee_skill": 6,
     "melee_dice": 2,
     "melee_dice_sides": 6,
     "melee_cut": 8,
     "dodge": 1,
     "armor_bash": 7,
-    "armor_cut": 12,
-    "armor_bullet": 10,
+    "armor_cut": 20,
+    "armor_bullet": 30,
     "vision_day": 20,
     "vision_night": 5,
     "harvest": "arachnid",
@@ -2040,10 +2059,10 @@
         "type": "bite",
         "cooldown": 4,
         "accuracy": 6,
-        "damage_max_instance": [ { "damage_type": "stab", "amount": 15, "armor_multiplier": 0.6 } ]
-      }
+        "damage_max_instance": [ { "damage_type": "stab", "amount": 15, "armor_penetration": 0.6 } ]
+ } 
     ],
-    "flags": [ "POISON", "SEES", "HEARS", "SMELLS", "FLIES", "PATH_AVOID_FIRE", "PATH_AVOID_FALL" ]
+    "flags": ["POISON", "SEES", "HEARS", "SMELLS", "FLIES" , "PATH_AVOID_FIRE" ]
   },
   {
     "id": "mon_grasshopper_small",
@@ -2059,7 +2078,7 @@
   {
     "id": "mon_grasshopper_giant",
     "type": "MONSTER",
-    "name": { "str": "giant grasshopper", "str_pl": "giant grasshoppers" },
+    "name": { "str": "giant grasshopper" },
     "description": "A huge green grasshopper about the size of a big dog, with long and strong back legs.  It hops, it hops and never stops.",
     "default_faction": "insect",
     "bodytype": "insect",
@@ -2127,8 +2146,9 @@
         "type": "bite",
         "cooldown": 4,
         "accuracy": 8,
-        "damage_max_instance": [ { "damage_type": "stab", "amount": 15, "armor_multiplier": 0.6 } ]
-      }
+        "no_infection_chance": 25,
+        "damage_max_instance": [ { "damage_type": "stab", "amount": 15, "armor_penetration": 0.6 } ]
+      } 
     ],
     "flags": [ "POISON", "SEES", "SMELLS", "IMMOBILE", "DIGS", "RANGED_ATTACKER" ]
   },
@@ -2136,8 +2156,8 @@
     "id": "mon_antlion_giant",
     "type": "MONSTER",
     "name": { "str": "giant adult antlion" },
-    "description": "A ferocious mutant flying antlion as big as a cat, darting through the air with a cluster of fangs for a mouth.",
-    "default_faction": "antlion",
+    "description": "A ferocious mutant flying antlion as big as a cat, darting through the air with a cluster of fangs for a mouth.  Despite dangerous looks it doesn't seem interested in you.",
+    "default_faction": "antlion_adult",
     "bodytype": "flying insect",
     "species": [ "INSECT_FLYING" ],
     "volume": "30 L",
@@ -2147,8 +2167,8 @@
     "material": [ "iflesh" ],
     "symbol": "y",
     "color": "yellow",
-    "aggression": 20,
-    "morale": 100,
+    "aggression": -10,
+    "morale": 20,
     "melee_skill": 6,
     "melee_dice": 1,
     "melee_dice_sides": 6,
@@ -2157,9 +2177,11 @@
     "armor_cut": 4,
     "vision_day": 25,
     "vision_night": 5,
-    "harvest": "arachnid",
-    "anger_triggers": [ "PLAYER_WEAK" ],
-    "fear_triggers": [ "PLAYER_CLOSE" ],
+    "harvest": "arachnid_flying",
+    "reproduction": { "baby_egg": "egg_antlion", "baby_count": 1, "baby_timer": 15 },
+    "baby_flags": [ "SPRING", "SUMMER", "AUTUMN" ],
+    "anger_triggers": [ "HURT" ],
+    "fear_triggers": [ "PLAYER_CLOSE", "FIRE" ],
     "death_function": [ "NORMAL" ],
     "flags": [ "SEES", "SMELLS", "FLIES", "HEARS", "HIT_AND_RUN", "PATH_AVOID_FIRE" ]
   },
@@ -2173,7 +2195,7 @@
     "volume": "3 L",
     "weight": "4 kg",
     "melee_cut": 8,
-    "upgrades": { "half_life": 14, "into": "mon_mantis_giant" }
+    "upgrades": { "half_life": 14, "into": "mon_strider_giant" }
   },
   {
     "id": "mon_strider_giant",
@@ -2186,7 +2208,8 @@
     "volume": "9 L",
     "weight": "12 kg",
     "hp": 20,
-    "speed": 200,
+    "speed": 50,
+    "attack_cost": 50,
     "material": [ "iflesh" ],
     "symbol": "s",
     "color": "light_gray",
@@ -2206,6 +2229,6 @@
     "anger_triggers": [ "PLAYER_WEAK" ],
     "fear_triggers": [ "FIRE", "PLAYER_CLOSE" ],
     "death_function": [ "NORMAL" ],
-    "flags": [ "POISON", "SEES", "HEARS", "SMELLS", "SWIMS" ]
+    "flags": ["POISON", "SEES", "HEARS", "SMELLS", "SWIMS" ]
   }
 ]
