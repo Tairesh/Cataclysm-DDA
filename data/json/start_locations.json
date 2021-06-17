@@ -480,11 +480,5 @@
     "id": "sloc_private_resort",
     "name": "Private resort",
     "terrain": [ "p_resort_2ss" ]
-  },
-  {
-    "type": "start_location",
-    "id": "sloc_light_industry",
-    "name": "Industrial Offices",
-    "terrain": [ "s_lightindustry_10_scen" ]
   }
 ]
