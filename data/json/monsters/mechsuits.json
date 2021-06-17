@@ -120,7 +120,7 @@
     "mech_battery": "huge_atomic_battery_cell",
     "attack_cost": 150,
     "revert_to_itype": "broken_mech_lifter",
-    "special_attacks": [ [ "SMASH", 40 ] ],
+    "special_attacks": [ { "id": "smash", "throw_strength": 96, "cooldown": 40 } ],
     "death_function": [ "BROKEN" ],
     "death_drops": { "groups": [ [ "robots", 20 ] ] },
     "flags": [

@@ -219,10 +219,14 @@ void melee_actor::load_internal( const JsonObject &obj, const std::string & )
         damage_max_instance = load_damage_instance( obj );
     }
 
-    min_mul = obj.get_float( "min_mul", 0.0f );
-    max_mul = obj.get_float( "max_mul", 1.0f );
-    move_cost = obj.get_int( "move_cost", 100 );
-    accuracy = obj.get_int( "accuracy", INT_MIN );
+    optional( obj, was_loaded, "attack_chance", attack_chance, 100 );
+    optional( obj, was_loaded, "accuracy", accuracy, INT_MIN );
+    optional( obj, was_loaded, "min_mul", min_mul, 0.5f );
+    optional( obj, was_loaded, "max_mul", max_mul, 1.0f );
+    optional( obj, was_loaded, "move_cost", move_cost, 100 );
+    optional( obj, was_loaded, "range", range, 1 );
+    optional( obj, was_loaded, "no_adjacent", no_adjacent, false );
+    optional( obj, was_loaded, "throw_strength", throw_strength, 0 );
 
     optional( obj, was_loaded, "miss_msg_u", miss_msg_u,
               to_translation( "The %s lunges at you, but you dodge!" ) );
@@ -236,6 +240,10 @@ void melee_actor::load_internal( const JsonObject &obj, const std::string & )
               to_translation( "The %1$s bites <npcname>'s %2$s, but fails to penetrate armor!" ) );
     optional( obj, was_loaded, "hit_dmg_npc", hit_dmg_npc,
               to_translation( "The %1$s bites <npcname>'s %2$s!" ) );
+    optional( obj, was_loaded, "throw_msg_u", throw_msg_u,
+              to_translation( "The force of the %s's attack sends you flying!" ) );
+    optional( obj, was_loaded, "throw_msg_npc", throw_msg_npc,
+              to_translation( "The force of the %s's attack sends <npcname> flying!" ) );
 
     if( obj.has_array( "body_parts" ) ) {
         for( JsonArray sub : obj.get_array( "body_parts" ) ) {
@@ -259,7 +267,18 @@ Creature *melee_actor::find_target( monster &z ) const
     }
 
     Creature *target = z.attack_target();
-    if( target == nullptr || !z.is_adjacent( target, false ) ) {
+
+    if( target == nullptr || ( no_adjacent && z.is_adjacent( target, false ) ) ) {
+        return nullptr;
+    }
+
+    if( range > 1 ) {
+        if( !z.sees( *target ) ||
+            !get_map().clear_path( z.pos(), target->pos(), range, 1, 200 ) ) {
+            return nullptr;
+        }
+
+    } else if( !z.is_adjacent( target, false ) ) {
         return nullptr;
     }
 
@@ -268,6 +287,10 @@ Creature *melee_actor::find_target( monster &z ) const
 
 bool melee_actor::call( monster &z ) const
 {
+    if( attack_chance != 100 && !x_in_y( attack_chance, 100 ) ) {
+        return false;
+    }
+
     Creature *target = find_target( z );
     if( target == nullptr ) {
         return false;
@@ -311,6 +334,11 @@ bool melee_actor::call( monster &z ) const
                                  sfx::get_heard_angle( z.pos() ) );
         target->add_msg_player_or_npc( m_neutral, no_dmg_msg_u, no_dmg_msg_npc, z.name(),
                                        body_part_name_accusative( bp_hit.id() ) );
+    }
+    if( throw_strength > 0 ) {
+        g->fling_creature( target, coord_to_angle( z.pos(), target->pos() ),
+                           throw_strength );
+        target->add_msg_player_or_npc( m_bad, throw_msg_u, throw_msg_npc, z.name() );
     }
 
     return true;

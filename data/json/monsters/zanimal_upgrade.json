@@ -51,7 +51,10 @@
       "vision_night": 1
     },
     "upgrades": { "half_life": 21, "into": "mon_dog_zombie_hulk" },
-    "special_attacks": [ [ "SMASH", 30 ], { "type": "bite", "move_cost": 150, "cooldown": 2, "accuracy": 4, "no_infection_chance": 12 } ],
+    "special_attacks": [
+      { "id": "smash", "throw_strength": 48, "cooldown": 30 },
+      { "type": "bite", "move_cost": 150, "cooldown": 2, "accuracy": 4, "no_infection_chance": 12 }
+    ],
     "extend": { "flags": [ "GROUP_BASH", "PUSH_VEH" ] }
   },
   {
@@ -70,7 +73,10 @@
     "armor_cut": 12,
     "armor_bullet": 10,
     "upgrades": {  },
-    "special_attacks": [ [ "SMASH", 20 ], { "type": "bite", "move_cost": 188, "cooldown": 2, "accuracy": 4, "no_infection_chance": 12 } ],
+    "special_attacks": [
+      { "id": "smash", "throw_strength": 81 },
+      { "type": "bite", "move_cost": 188, "cooldown": 2, "accuracy": 4, "no_infection_chance": 12 }
+    ],
     "extend": { "flags": [ "DESTROYS" ] }
   },
   {
@@ -88,7 +94,7 @@
     "armor_bash": 12,
     "armor_acid": 1,
     "special_attacks": [
-      [ "SMASH", 45 ],
+      { "id": "smash", "throw_strength": 66, "cooldown": 45 },
       { "id": "scratch", "damage_max_instance": [ { "damage_type": "cut", "amount": 15, "armor_multiplier": 0.6 } ] }
     ]
   },
@@ -251,7 +257,7 @@
     "armor_cut": 10,
     "armor_bullet": 8,
     "vision_night": 6,
-    "special_attacks": [ [ "SMASH", 30 ], [ "GRAB", 7 ] ],
+    "special_attacks": [ { "id": "smash", "throw_strength": 108, "cooldown": 30 }, [ "GRAB", 7 ] ],
     "flags": [
       "SEES",
       "HEARS",
