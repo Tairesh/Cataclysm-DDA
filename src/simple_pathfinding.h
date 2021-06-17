@@ -66,6 +66,12 @@ path<Point> find_path( const Point &source,
         return Traits::y( p ) * Traits::x( max ) + Traits::x( p );
     };
 
+    const auto distance = [ max ]( const Point & p1, const Point & p2 ) {
+        return std::round( std::sqrt( static_cast<double>
+                                      ( ( Traits::x( p1 ) - Traits::x( p2 ) ) * ( Traits::x( p1 ) - Traits::x( p2 ) ) ) +
+                                      ( ( Traits::y( p1 ) - Traits::y( p2 ) ) * ( Traits::y( p1 ) - Traits::y( p2 ) ) ) ) );
+    };
+
     path<Point> res;
 
     if( source == dest ) {
@@ -131,7 +137,9 @@ path<Point> find_path( const Point &source,
             }
 
             Node cn( p, dir );
-            cn.priority = estimator( cn, &mn );
+            // heuristic distance
+            const int h = distance( p, dest );
+            cn.priority = estimator( cn, &mn ) + h;
 
             if( cn.priority == rejected ) {
                 continue;
@@ -139,23 +147,6 @@ path<Point> find_path( const Point &source,
             // record direction to shortest path
             if( open[n] == 0 || open[n] > cn.priority ) {
                 dirs[n] = ( dir + offsets.size() / 2 ) % offsets.size();
-
-                if( open[n] != 0 ) {
-                    while( nodes[i].top().pos != p ) {
-                        nodes[1 - i].push( nodes[i].top() );
-                        nodes[i].pop();
-                    }
-                    nodes[i].pop();
-
-                    if( nodes[i].size() > nodes[1 - i].size() ) {
-                        i = 1 - i;
-                    }
-                    while( !nodes[i].empty() ) {
-                        nodes[1 - i].push( nodes[i].top() );
-                        nodes[i].pop();
-                    }
-                    i = 1 - i;
-                }
                 open[n] = cn.priority;
                 nodes[i].push( cn );
             }
