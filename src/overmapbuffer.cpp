@@ -775,7 +775,7 @@ std::vector<tripoint_abs_omt> overmapbuffer::get_npc_path(
             }
         }
         res += travel_cost;
-        res += manhattan_dist( finish, cur.pos );
+        res += rl_dist( finish, cur.pos );
 
         return res;
     };
