@@ -62,6 +62,8 @@ class melee_actor : public mattack_actor
     public:
         // Maximum damage from the attack
         damage_instance damage_max_instance = damage_instance::physical( 9, 0, 0, 0 );
+        // Percent chance for the attack to happen if the mob tries it
+        int attack_chance = 100;
         // Minimum multiplier on damage above (rolled per attack)
         float min_mul = 0.5f;
         // Maximum multiplier on damage above (also per attack)
@@ -71,6 +73,12 @@ class melee_actor : public mattack_actor
         // If non-negative, the attack will use a different accuracy from mon's
         // regular melee attack.
         int accuracy = INT_MIN;
+        // Attack range, 1 means melee only
+        int range = 1;
+        // Attack fails if aimed at adjacent targets
+        bool no_adjacent = false;
+        // If non-zero, the attack will fling targets side*dice*3, hulk =92
+        int throw_strength = 0;
 
         /**
          * If empty, regular melee roll body part selection is used.
@@ -88,6 +96,8 @@ class melee_actor : public mattack_actor
         translation no_dmg_msg_u;
         /** Message for damaging hit against the player. */
         translation hit_dmg_u;
+        /** Message for throwing the player. */
+        translation throw_msg_u;
 
         /** Message for missed attack against a non-player. */
         translation miss_msg_npc;
@@ -95,6 +105,8 @@ class melee_actor : public mattack_actor
         translation no_dmg_msg_npc;
         /** Message for damaging hit against a non-player. */
         translation hit_dmg_npc;
+        /** Message for throwing a non-player. */
+        translation throw_msg_npc;
 
         melee_actor();
         ~melee_actor() override = default;

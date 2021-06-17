@@ -217,7 +217,7 @@
     "armor_bullet": 5,
     "vision_night": 4,
     "harvest": "zombie",
-    "special_attacks": [ [ "SMASH", 30 ], [ "GRAB", 7 ] ],
+    "special_attacks": [ { "id": "smash", "throw_strength": 72, "cooldown": 30 }, [ "GRAB", 7 ] ],
     "death_drops": "default_zombie_death_drops",
     "death_function": [ "NORMAL" ],
     "burn_into": "mon_zombie_fiend",
@@ -267,7 +267,12 @@
     "armor_stab": 8,
     "vision_night": 3,
     "harvest": "zombie",
-    "special_attacks": [ [ "SMASH", 30 ], [ "BIO_OP_TAKEDOWN", 20 ], [ "RANGED_PULL", 20 ], [ "GRAB_DRAG", 10 ] ],
+    "special_attacks": [
+      { "id": "smash", "throw_strength": 72, "cooldown": 30 },
+      [ "BIO_OP_TAKEDOWN", 20 ],
+      [ "RANGED_PULL", 20 ],
+      [ "GRAB_DRAG", 10 ]
+    ],
     "death_drops": "default_zombie_death_drops",
     "death_function": [ "NORMAL" ],
     "burn_into": "mon_zombie_fiend",
@@ -317,7 +322,12 @@
     "vision_day": 5,
     "vision_night": 40,
     "harvest": "zombie",
-    "special_attacks": [ [ "SMASH", 40 ], [ "STRETCH_ATTACK", 20 ], [ "LONGSWIPE", 20 ] ],
+    "special_attacks": [
+      { "id": "smash", "throw_strength": 48, "cooldown": 40 },
+      { "id": "stretch_attack", "cooldown": 40 },
+      { "id": "longswipe" },
+      { "id": "cut_throat" }
+    ],
     "death_drops": "default_zombie_death_drops",
     "death_function": [ "NORMAL" ],
     "burn_into": "mon_zombie_fiend",
@@ -505,7 +515,7 @@
     "vision_day": 30,
     "vision_night": 3,
     "harvest": "zombie",
-    "special_attacks": [ [ "STRETCH_BITE", 10 ], [ "STRETCH_ATTACK", 5 ] ],
+    "special_attacks": [ { "id": "stretch_bite" }, { "id": "stretch_attack", "cooldown": 5 } ],
     "death_function": [ "BLOBSPLIT" ],
     "flags": [ "SEES", "HEARS", "SMELLS", "WARM", "BASHES", "GROUP_BASH", "POISON", "NO_BREATHE", "FILTHY" ]
   },
@@ -537,7 +547,7 @@
     "vision_day": 83,
     "vision_night": 4,
     "harvest": "zombie",
-    "special_attacks": [ [ "SMASH", 20 ] ],
+    "special_attacks": [ { "id": "smash", "throw_strength": 96 } ],
     "death_drops": "mon_zombie_hulk_death_drops",
     "death_function": [ "NORMAL" ],
     "flags": [
@@ -1157,7 +1167,13 @@
     "vision_night": 3,
     "harvest": "exempt",
     "emit_fields": [ { "emit_id": "emit_smoke_stream", "delay": "1 s" } ],
-    "special_attacks": [ [ "SMASH", 30 ], { "type": "bite", "cooldown": 5 }, [ "scratch", 15 ], [ "RANGED_PULL", 20 ], [ "GRAB_DRAG", 10 ] ],
+    "special_attacks": [
+      { "id": "smash", "throw_strength": 48, "cooldown": 30 },
+      { "type": "bite", "cooldown": 5 },
+      [ "scratch", 15 ],
+      [ "RANGED_PULL", 20 ],
+      [ "GRAB_DRAG", 10 ]
+    ],
     "death_function": [ "SMOKEBURST" ],
     "flags": [
       "SEES",
