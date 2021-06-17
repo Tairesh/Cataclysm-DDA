@@ -742,7 +742,7 @@ void draw(
                 ter_color = c_red;
                 ter_sym   = "!";
             } else if( blink && player_path_count ) {
-                ter_color = c_blue;
+                ter_color = c_light_blue;
                 ter_sym = "!";
             } else if( blink && showhordes && los &&
                        overmap_buffer.get_horde_size( omp ) >= HORDE_VISIBILITY_SIZE ) {

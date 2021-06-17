@@ -760,14 +760,6 @@ std::vector<tripoint_abs_omt> overmapbuffer::get_npc_path(
             } else {
                 return pf::rejected;
             }
-        } else if( is_ot_match( "forest", oter, ot_match_type::type ) ) {
-            travel_cost = 10;
-        } else if( is_ot_match( "forest_water", oter, ot_match_type::type ) ) {
-            travel_cost = 15;
-        } else if( is_ot_match( "road", oter, ot_match_type::type ) ||
-                   is_ot_match( "bridge", oter, ot_match_type::type ) ||
-                   is_ot_match( "road_nesw_manhole", oter, ot_match_type::type ) ) {
-            travel_cost = 1;
         } else if( is_river_or_lake( oter ) ) {
             if( ptype.amphibious || ptype.only_water ) {
                 travel_cost = 1;
