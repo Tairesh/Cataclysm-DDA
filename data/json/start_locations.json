@@ -485,6 +485,6 @@
     "type": "start_location",
     "id": "sloc_light_industry",
     "name": "Industrial Offices",
-    "terrain": [ "s_lightindustry_10" ]
+    "terrain": [ "s_lightindustry_10_scen" ]
   }
 ]
