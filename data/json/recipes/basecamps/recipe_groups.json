@@ -26,6 +26,7 @@
         "om_terrains": [ "shelter_2", "shelter_2_vandal" ]
       },
 <<<<<<< HEAD
+<<<<<<< HEAD
       {
         "id": "faction_base_mansion_+1_0",
         "description": "Mansion Fountain Garden Base",
@@ -66,6 +67,12 @@
         "id": "faction_base_pottery_cottage_0",
         "description": "Pottery Cottage Camp",
         "om_terrains": [ "pottery_cottage" ]
+=======
+      {
+        "id": "faction_base_sealab_small_0",
+        "description": "Freshwater Research Station Base",
+        "om_terrains": [ "sealab_small_-3" ]
+>>>>>>> 859342b9fe345a84f14955139e07f5bfed9f34e6
       }
 =======
       { "id": "faction_base_lighthouse_0", "description": "Lighthouse Base", "om_terrains": [ "lighthouse_ground" ] }
