@@ -25,6 +25,7 @@
         "description": "Central Stairs Evac Shelter Base",
         "om_terrains": [ "shelter_2", "shelter_2_vandal" ]
       },
+<<<<<<< HEAD
       {
         "id": "faction_base_mansion_+1_0",
         "description": "Mansion Fountain Garden Base",
@@ -66,6 +67,9 @@
         "description": "Pottery Cottage Camp",
         "om_terrains": [ "pottery_cottage" ]
       }
+=======
+      { "id": "faction_base_lighthouse_0", "description": "Lighthouse Base", "om_terrains": [ "lighthouse_ground" ] }
+>>>>>>> 3a0c4b474ef1629d04cca385031d75068463b70b
     ]
   },
   {
