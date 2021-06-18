@@ -76,7 +76,7 @@ path<Point> find_path( const Point &source,
         return res;
     }
 
-    const Node first_node( source, offsets.size() + 1, 1000 );
+    const Node first_node( source, 0, 0 );
 
     if( estimator( first_node, nullptr ) == rejected ) {
         return res;
@@ -138,7 +138,15 @@ path<Point> find_path( const Point &source,
             }
             // record direction to shortest path
             if( open[n] == 0 || open[n] > cn.priority ) {
-                dirs[n] = ( dir + offsets.size() / 2 ) % offsets.size();
+                const Point reverse = offsets[dir] * -1;
+                int dir_reverse;
+                for( size_t d = 0; d < offsets.size(); d++ ) {
+                    if( offsets[d] == reverse ) {
+                        dir_reverse = static_cast< int >( d );
+                        break;
+                    }
+                }
+                dirs[n] = dir_reverse;
 
                 if( open[n] != 0 ) {
                     while( nodes[i].top().pos != p ) {
