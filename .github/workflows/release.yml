@@ -212,6 +212,7 @@ jobs:
         working-directory: ./android
         run: |
           echo "${{ secrets.KEYSTORE }}" > release.keystore.asc
+          cat release.keystore.asc
           gpg -d --passphrase "${{ secrets.KEYSTORE_PASSWORD }}" --batch release.keystore.asc > app/cdda.keystore
           echo "${{ secrets.KEYSTORE_PROPERTIES }}" > keystore.properties.asc
           gpg -d --passphrase "${{ secrets.KEYSTORE_PASSWORD }}" --batch keystore.properties.asc > keystore.properties
