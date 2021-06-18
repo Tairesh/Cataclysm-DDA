@@ -3000,6 +3000,7 @@ void catacurses::init_interface()
 
     get_options().init();
     get_options().load();
+    set_language(); //Prevent translated language strings from causing an error if language not set
 
     font_loader fl;
     fl.load();
