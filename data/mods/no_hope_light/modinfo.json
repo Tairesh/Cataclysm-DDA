@@ -1,0 +1,13 @@
+[
+  {
+    "type": "MOD_INFO",
+    "ident": "no_hope_light",
+    "name": "No Hope Light",
+    "authors": [ "Night_Pryanik", "Tairesh" ],
+    "maintainers": [ "Tairesh" ],
+    "description": "Harder, harsher Cataclysm.",
+    "category": "content",
+    "dependencies": [ "dda" ],
+    "version": "3.0"
+  }
+]
