@@ -76,7 +76,7 @@ path<Point> find_path( const Point &source,
         return res;
     }
 
-    const Node first_node( source, 0, 0 );
+    const Node first_node( source, -1, 0 );
 
     if( estimator( first_node, nullptr ) == rejected ) {
         return res;
@@ -87,7 +87,7 @@ path<Point> find_path( const Point &source,
 
     std::vector<bool> closed( map_size, false );
     std::vector<int> open( map_size, 0 );
-    std::vector<short> dirs( map_size, 0 );
+    std::vector<point> dirs( map_size, point(0, 0) );
     std::priority_queue<Node, std::vector<Node>> nodes[2];
 
     int i = 0;
@@ -110,9 +110,9 @@ path<Point> find_path( const Point &source,
 
             while( p != source ) {
                 const int n = map_index( p );
-                const int dir = dirs[n];
-                res.nodes.emplace_back( p, dir );
-                p += offsets[dir];
+                const point dir = dirs[n];
+                res.nodes.emplace_back( p, -1 );
+                p += dir;
             }
 
             res.nodes.emplace_back( p, -1 );
@@ -138,15 +138,7 @@ path<Point> find_path( const Point &source,
             }
             // record direction to shortest path
             if( open[n] == 0 || open[n] > cn.priority ) {
-                const Point reverse = offsets[dir] * -1;
-                int dir_reverse;
-                for( size_t d = 0; d < offsets.size(); d++ ) {
-                    if( offsets[d] == reverse ) {
-                        dir_reverse = static_cast< int >( d );
-                        break;
-                    }
-                }
-                dirs[n] = dir_reverse;
+                dirs[n] = offsets[dir] * -1;
 
                 if( open[n] != 0 ) {
                     while( nodes[i].top().pos != p ) {
