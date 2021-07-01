@@ -1288,6 +1288,8 @@ bool game::cleanup_at_end()
     sfx::fade_audio_group( sfx::group::context_themes, 300 );
     sfx::fade_audio_group( sfx::group::fatigue, 300 );
 
+    zone_manager::get_manager().clear();
+
     MAPBUFFER.reset();
     overmap_buffer.clear();
 
