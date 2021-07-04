@@ -87,7 +87,7 @@ path<Point> find_path( const Point &source,
 
     std::vector<bool> closed( map_size, false );
     std::vector<int> open( map_size, 0 );
-    std::vector<point> dirs( map_size, point(0, 0) );
+    std::vector<point> dirs( map_size, point( 0, 0 ) );
     std::priority_queue<Node, std::vector<Node>> nodes[2];
 
     int i = 0;

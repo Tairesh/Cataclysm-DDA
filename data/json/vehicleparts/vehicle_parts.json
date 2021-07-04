@@ -119,6 +119,7 @@
       "HARNESS_any",
       "STEERABLE",
       "UNMOUNT_ON_DAMAGE",
+      "UNSTABLE_WHEEL",
       "WHEEL",
       "SIMPLE_PART"
     ],

@@ -25,6 +25,27 @@
         "description": "Central Stairs Evac Shelter Base",
         "om_terrains": [ "shelter_2", "shelter_2_vandal" ]
       },
+      { "id": "faction_base_lighthouse_0", "description": "Lighthouse Base", "om_terrains": [ "lighthouse_ground" ] },
+      {
+        "id": "faction_base_pottery_cottage_0",
+        "description": "Pottery Cottage Camp",
+        "om_terrains": [ "pottery_cottage" ]
+      },
+      {
+        "id": "faction_base_radio_tower_0",
+        "description": "Radio Tower Without Building Base",
+        "om_terrains": [ "radio_tower" ]
+      },
+      {
+        "id": "faction_base_radio_tower_1_0",
+        "description": "Radio Tower With Building Base",
+        "om_terrains": [ "radio_tower_1" ]
+      },
+      {
+        "id": "faction_base_fire_lookout_tower_0",
+        "description": "Fire Lookout Tower Base",
+        "om_terrains": [ "ws_fire_lookout_tower_base" ]
+      },
       {
         "id": "faction_base_mansion_+1_0",
         "description": "Mansion Fountain Garden Base",
@@ -44,34 +65,7 @@
         "id": "faction_base_mansion_+4_0",
         "description": "Mansion Garden With Columns Base",
         "om_terrains": [ "mansion_+4" ]
-      },
-      {
-        "id": "faction_base_fire_lookout_tower_0",
-        "description": "Fire Lookout Tower Base",
-        "om_terrains": [ "ws_fire_lookout_tower_base" ]
-      },
-      { "id": "faction_base_evac_center_0", "description": "Evac Center Base", "om_terrains": [ "evac_center_13" ] },
-      {
-        "id": "faction_base_radio_tower_0",
-        "description": "Radio Tower Without Building Base",
-        "om_terrains": [ "radio_tower" ]
-      },
-      {
-        "id": "faction_base_radio_tower_1_0",
-        "description": "Radio Tower With Building Base",
-        "om_terrains": [ "radio_tower_1" ]
-      },
-      {
-        "id": "faction_base_pottery_cottage_0",
-        "description": "Pottery Cottage Camp",
-        "om_terrains": [ "pottery_cottage" ]
-      },
-      {
-        "id": "faction_base_sealab_small_0",
-        "description": "Freshwater Research Station Base",
-        "om_terrains": [ "sealab_small_-3" ]
-      },
-      { "id": "faction_base_lighthouse_0", "description": "Lighthouse Base", "om_terrains": [ "lighthouse_ground" ] }
+      }
     ]
   },
   {

@@ -11,6 +11,7 @@
 #include <vector>
 
 #include "calendar.h"
+#include "clone_ptr.h"
 #include "color.h"
 #include "iexamine.h"
 #include "translations.h"
@@ -24,6 +25,7 @@ using ter_str_id = string_id<ter_t>;
 
 class JsonObject;
 class player;
+struct iexamine_actor;
 struct furn_t;
 struct itype;
 struct tripoint;
@@ -235,6 +237,8 @@ enum ter_connects : int {
     TERCONN_CANVAS_WALL,
 };
 
+void init_mapdata();
+
 struct map_data_common_t {
         map_bash_info        bash;
         map_deconstruct_info deconstruct;
@@ -249,7 +253,9 @@ struct map_data_common_t {
         translation name_;
 
         // Hardcoded examination function
-        iexamine_functions examine_func; // What happens when the terrain/furniture is examined
+        iexamine_function examine_func; // What happens when the terrain/furniture is examined
+        // Data-driven examine actor
+        cata::clone_ptr<iexamine_actor> examine_actor;
 
     private:
         std::set<std::string> flags;    // string flags which possibly refer to what's documented above.
@@ -273,9 +279,10 @@ struct map_data_common_t {
         */
         std::array<int, NUM_SEASONS> symbol_;
 
-        bool can_examine( const tripoint &examp ) const;
-        bool has_examine( iexamine_examine_function func ) const;
-        void set_examine( iexamine_functions func );
+        bool can_examine() const;
+        bool has_examine( iexamine_function_ref func ) const;
+        bool has_examine( const std::string &action ) const;
+        void set_examine( iexamine_function_ref func );
         void examine( player &, const tripoint & ) const;
 
         int light_emitted = 0;
@@ -439,6 +446,7 @@ provided for terrains added by mods. A string equivalent is always present, i.e.
 t_basalt
 "t_basalt"
 */
+// NOLINTNEXTLINE(cata-static-int_id-constants)
 extern ter_id t_null,
        t_hole, // Real nothingness; makes you fall a z-level
        // Ground
@@ -464,6 +472,8 @@ extern ter_id t_null,
        t_wall_half, t_wall_wood, t_wall_wood_chipped, t_wall_wood_broken,
        t_wall, t_concrete_wall, t_brick_wall,
        t_wall_metal,
+       t_scrap_wall,
+       t_scrap_wall_halfway,
        t_wall_glass,
        t_wall_glass_alarm,
        t_reinforced_glass, t_reinforced_glass_shutter, t_reinforced_glass_shutter_open,
@@ -474,6 +484,7 @@ extern ter_id t_null,
        t_door_c, t_door_c_peep, t_door_b, t_door_b_peep, t_door_o, t_door_o_peep,
        t_door_locked_interior, t_door_locked, t_door_locked_peep, t_door_locked_alarm, t_door_frame,
        t_chaingate_l, t_fencegate_c, t_fencegate_o, t_chaingate_c, t_chaingate_o,
+       t_retractable_gate_l, t_retractable_gate_c, t_retractable_gate_o,
        t_door_boarded, t_door_boarded_damaged, t_door_boarded_peep, t_rdoor_boarded,
        t_rdoor_boarded_damaged, t_door_boarded_damaged_peep,
        t_door_metal_c, t_door_metal_o, t_door_metal_locked, t_door_metal_pickable,
@@ -562,6 +573,7 @@ runtime index: furn_id
 furn_id refers to a position in the furnlist[] where the furn_t struct is stored. See note
 about ter_id above.
 */
+// NOLINTNEXTLINE(cata-static-int_id-constants)
 extern furn_id f_null,
        f_hay, f_cattails, f_lotus, f_lilypad,
        f_rubble, f_rubble_rock, f_wreckage, f_ash,

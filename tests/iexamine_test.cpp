@@ -1,5 +1,6 @@
 #include "catch/catch.hpp"
 #include "map.h"
+#include "cata_catch.h"
 
 #include "action.h"
 #include "calendar.h"
