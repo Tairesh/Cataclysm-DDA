@@ -256,7 +256,6 @@
     "copy-from": "egg_insect",
     "color": "yellow",
     "symbol": "o",
-    "spoils_in": "5 days",
     "description": "A large white antlion egg.  There is something hard inside.",
     "rot_spawn": "GROUP_EGG_ANTLION",
     "rot_spawn_chance": 50
