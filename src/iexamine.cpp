@@ -6151,9 +6151,9 @@ void iexamine::workout( player &p, const tripoint &examp )
  * @param function_name The name of the function to get.
  * @return A function pointer to the specified function.
  */
-iexamine_functions iexamine_functions_from_string( const std::string &function_name )
+iexamine_function iexamine_function_from_string( const std::string &function_name )
 {
-    static const std::map<std::string, iexamine_examine_function> function_map = {{
+    static const std::map<std::string, iexamine_function> function_map = {{
             { "none", &iexamine::none },
             { "attunement_altar", &iexamine::attunement_altar },
             { "deployed_furniture", &iexamine::deployed_furniture },
@@ -6243,19 +6243,12 @@ iexamine_functions iexamine_functions_from_string( const std::string &function_n
 
     auto iter = function_map.find( function_name );
     if( iter != function_map.end() ) {
-        iexamine_examine_function func = iter->second;
-        if( function_name == "none" ) {
-            return iexamine_functions{&iexamine::always_false, func};
-        } else if( harvestable_functions.find( function_name ) != harvestable_functions.end() ) {
-            return iexamine_functions{&iexamine::harvestable_now, func};
-        } else {
-            return iexamine_functions{&iexamine::always_true, func};
-        }
+        return iter->second;
     }
 
     //No match found
     debugmsg( "Could not find an iexamine function matching '%s'!", function_name );
-    return iexamine_functions{&iexamine::always_false, &iexamine::none};
+    return &iexamine::none;
 }
 
 void iexamine::practice_survival_while_foraging( player *p )

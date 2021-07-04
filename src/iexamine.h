@@ -159,13 +159,7 @@ void practice_survival_while_foraging( player *p );
 
 } //namespace iexamine
 
-using iexamine_examine_function = void ( * )( player &, const tripoint & );
-using iexamine_can_examine_function = bool ( * )( const tripoint & );
-struct iexamine_functions {
-    iexamine_can_examine_function can_examine;
-    iexamine_examine_function examine;
-};
-
-iexamine_functions iexamine_functions_from_string( const std::string &function_name );
+using iexamine_function = void ( * )( player &, const tripoint & );
+iexamine_function iexamine_function_from_string( const std::string &function_name );
 
 #endif // CATA_SRC_IEXAMINE_H
