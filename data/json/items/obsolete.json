@@ -3039,15 +3039,7 @@
     "name": { "str": "hurled rubble" },
     "description": "Stone at the ready to crush that which isn't part of the blob.",
     "material": [ "stone" ],
-    "flags": [
-      "PRIMITIVE_RANGED_WEAPON",
-      "NONCONDUCTIVE",
-      "NO_REPAIR",
-      "WATERPROOF_GUN",
-      "NO_SALVAGE",
-      "NO_UNLOAD",
-      "NEVER_JAMS"
-    ],
+    "flags": [ "PRIMITIVE_RANGED_WEAPON", "NONCONDUCTIVE", "NO_REPAIR", "WATERPROOF_GUN", "NO_SALVAGE", "NO_UNLOAD", "NEVER_JAMS" ],
     "skill": "throw",
     "ammo": [ "rock" ],
     "ammo_effects": [ "NO_PENETRATE_OBSTACLES", "NEVER_MISFIRES" ],
