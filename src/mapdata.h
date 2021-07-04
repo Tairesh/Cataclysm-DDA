@@ -13,7 +13,6 @@
 #include "calendar.h"
 #include "clone_ptr.h"
 #include "color.h"
-#include "iexamine.h"
 #include "translations.h"
 #include "type_id.h"
 #include "units.h"
@@ -29,6 +28,9 @@ struct iexamine_actor;
 struct furn_t;
 struct itype;
 struct tripoint;
+
+using iexamine_function = void ( * )( player &, const tripoint & );
+using iexamine_function_ref = void( & )( player &, const tripoint & );
 
 struct map_bash_info {
     int str_min;            // min str(*) required to bash
@@ -357,7 +359,7 @@ struct map_data_common_t {
         }
 
         virtual void load( const JsonObject &jo, const std::string & );
-        virtual void check() const {};
+        virtual void check() const;
 };
 
 /*

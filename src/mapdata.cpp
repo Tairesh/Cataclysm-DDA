@@ -342,7 +342,7 @@ furn_t null_furniture_t()
     new_furniture.move_str_req = -1;
     new_furniture.transparent = true;
     new_furniture.set_flag( flag_TRANSPARENT );
-    new_furniture.examine_func = iexamine_functions_from_string( "none" );
+    new_furniture.examine_func = iexamine_function_from_string( "none" );
     new_furniture.max_volume = DEFAULT_MAX_VOLUME_IN_SQUARE;
     return new_furniture;
 }
@@ -364,7 +364,7 @@ ter_t null_terrain_t()
     new_terrain.transparent = true;
     new_terrain.set_flag( flag_TRANSPARENT );
     new_terrain.set_flag( flag_DIGGABLE );
-    new_terrain.examine_func = iexamine_functions_from_string( "none" );
+    new_terrain.examine_func = iexamine_function_from_string( "none" );
     new_terrain.max_volume = DEFAULT_MAX_VOLUME_IN_SQUARE;
     return new_terrain;
 }
@@ -399,14 +399,14 @@ std::string map_data_common_t::name() const
     return name_.translated();
 }
 
-bool map_data_common_t::can_examine( const tripoint &examp ) const
+bool map_data_common_t::can_examine() const
 {
-    return examine_func.can_examine( examp );
+    return !has_examine( iexamine::none );
 }
 
-bool map_data_common_t::has_examine( iexamine_examine_function func ) const
+bool map_data_common_t::has_examine( iexamine_function_ref func ) const
 {
-    return examine_func.examine == func;
+    return examine_func == &func;
 }
 
 bool map_data_common_t::has_examine( const std::string &action ) const
@@ -416,7 +416,7 @@ bool map_data_common_t::has_examine( const std::string &action ) const
 
 void map_data_common_t::set_examine( iexamine_function_ref func )
 {
-    examine_func = func;
+    examine_func = &func;
 }
 
 void map_data_common_t::examine( player &guy, const tripoint &examp ) const
@@ -1195,7 +1195,7 @@ void map_data_common_t::load( const JsonObject &jo, const std::string & )
         examine_actor = iexamine_actor_from_jsobj( data );
         examine_actor->load( data );
     } else {
-        examine_func = iexamine_functions_from_string( "none" );
+        examine_func = iexamine_function_from_string( "none" );
     }
 
     if( jo.has_array( "harvest_by_season" ) ) {
